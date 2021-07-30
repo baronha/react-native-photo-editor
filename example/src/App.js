@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Dimensions } from 'react-native';
 import ImagePicker from '@baronha/react-native-multiple-image-picker';
 import { Image } from 'react-native';
 import { TouchableOpacity } from 'react-native';
-import PhotoEditor from 'react-native-photo-editor';
+import PhotoEditor from '@baronha/react-native-photo-editor';
 
 const { width } = Dimensions.get('window');
 
