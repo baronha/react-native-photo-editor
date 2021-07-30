@@ -4,6 +4,7 @@
   <color name="colorPrimaryDark">#303F9F</color>
   <color name="colorAccent">#FF4081</color>
 
+  <color name="background">#06080B</color>
   <color name="black">#000000</color>
   <color name="white">#FFFFFF</color>
   <color name="blue_color_picker">#0066FF</color>
@@ -16,7 +17,7 @@
   <color name="violet_color_picker">#8359A3</color>
   <color name="yellow_color_picker">#FBE870</color>
   <color name="yellow_green_color_picker">#C5E17A</color>
-  <color name="tool_bg">#151414</color>
+  <color name="tool_bg">#1a1f28</color>
   <color name="semi_black_transparent">#99000000</color>
 
 </resources>

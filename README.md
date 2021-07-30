@@ -1,12 +1,13 @@
-# react-native-photo-editor
+# React Native Photo Editor (RNPE)
 
 🌄 Image editor using native modules for iOS and Android. Inherit from 2 available libraries, [Brightroom](https://github.com/muukii/Brightroom) (iOS) and [PhotoEditor](https://github.com/burhanrashid52/PhotoEditor) (Android)
 
 # Note
-This library is for personal use, so if you customize your style or change something, please fork this library and check the detailed documentation in the original library.
+
+This lib is for personal use, so if you customize your style or change something, Please fork this library and check the detailed documentation in the original library:
 
 - [iOS](https://github.com/muukii/Brightroom)
-- [Android](https://github.com/burhanrashid52/PhotoEditor) 
+- [Android](https://github.com/burhanrashid52/PhotoEditor)
 
 ## Installation
 
@@ -21,13 +22,18 @@ import PhotoEditor from "@baronha/react-native-photo-editor";
 
 // ...
 
-const result = await PhotoEditor.open([options](#Options));
+const result = await PhotoEditor.open(#Options);
 ```
 
 ## Options
-| Property                         |       Type   | Default value |  Platform  | Description                              |
-| -------------------------------- | :----------: | :-----------: | :--------: | :--------------------------------------- |
-| uri                 | string         | required          | 
+
+| Property |  Type  | Default value | Platform | Description      |
+| -------- | :----: | :-----------: | :------: | :--------------- |
+| uri      | string |   required    |   both   | Local image path |
+
+## To Do
+
+- [ ] Customize.
 
 ## Contributing
 

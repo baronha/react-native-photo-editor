@@ -5,8 +5,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    android:padding="4dp"
-    tools:background="@android:color/black">
+    android:padding="4dp">
 
 
     <ImageView
