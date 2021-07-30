@@ -1,7 +1,7 @@
 import { NativeModules } from 'react-native';
 
 type PhotoEditorType = {
-  multiply(a: number, b: number): Promise<number>;
+  open(option: Object): Promise<String>;
 };
 
 const { PhotoEditor } = NativeModules;

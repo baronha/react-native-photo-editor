@@ -9,6 +9,7 @@
     "start": "react-native start"
   },
   "dependencies": {
+    "@baronha/react-native-multiple-image-picker": "^0.3.2",
     "react": "16.13.1",
     "react-native": "0.63.4"
   },
