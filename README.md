@@ -5,8 +5,8 @@
 # Note
 This library is for personal use, so if you customize your style or change something, please fork this library and check the detailed documentation in the original library.
 
-###[iOS](https://github.com/muukii/Brightroom)
-###[Android](https://github.com/burhanrashid52/PhotoEditor) 
+- [iOS](https://github.com/muukii/Brightroom)
+- [Android](https://github.com/burhanrashid52/PhotoEditor) 
 
 ## Installation
 
