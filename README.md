@@ -13,7 +13,7 @@ This lib is for personal use, so if you customize your style or change something
 
 | iOS                                                  | Android                                                  |
 | ---------------------------------------------------- | -------------------------------------------------------- |
-| <img src="./resources/Screenshow_iOS.png" height="720px"> | <img src="./resources/Screenshow_Android.png" height="720px"> |
+| <img src="./resources/Screenshot_iOS.png" height="720px"> | <img src="./resources/Screenshot_Android.png" height="720px"> |
 
 ## Installation
 
