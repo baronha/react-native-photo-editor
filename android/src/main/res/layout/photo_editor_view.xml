@@ -5,7 +5,7 @@
   android:id="@+id/rootView"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  android:background="color/background"
+  android:background="@color/tool_bg"
   app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
@@ -29,9 +29,7 @@
   <ImageView
     android:id="@+id/imgUndo"
     android:layout_width="@dimen/top_tool_icon_width"
-    android:layout_height="wrap_content"
-    android:background="@color/semi_black_transparent"
-    android:padding="8dp"
+    android:layout_height="@dimen/top_tool_icon_width"
     android:src="@drawable/ic_undo"
     app:layout_constraintBottom_toTopOf="@+id/rvConstraintTools"
     app:layout_constraintEnd_toStartOf="@+id/imgRedo" />
@@ -39,24 +37,12 @@
   <ImageView
     android:id="@+id/imgRedo"
     android:layout_width="@dimen/top_tool_icon_width"
-    android:layout_height="wrap_content"
-    android:background="@color/semi_black_transparent"
-    android:padding="8dp"
+    android:layout_height="@dimen/top_tool_icon_width"
     android:src="@drawable/ic_redo"
     app:layout_constraintBottom_toTopOf="@+id/rvConstraintTools"
-    app:layout_constraintEnd_toEndOf="parent" />
-
-  <ImageView
-    android:id="@+id/imgClose"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignParentStart="true"
-    android:layout_alignParentLeft="true"
-    android:layout_margin="8dp"
-    android:src="@drawable/ic_close"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/guideline" />
+    app:layout_constraintEnd_toEndOf="parent"
+    android:layout_marginEnd="4dp"
+    android:layout_marginRight="4dp" />
 
   <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/rvConstraintTools"
@@ -85,15 +71,16 @@
     tools:listitem="@layout/row_filter_view" />
 
   <ImageView
-    android:id="@+id/imgGallery"
-    android:layout_width="@dimen/top_tool_icon_width"
+    android:id="@+id/imgClose"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@color/semi_black_transparent"
-    android:padding="8dp"
-    android:src="@drawable/ic_frame"
-    app:layout_constraintBottom_toTopOf="@+id/rvConstraintTools"
-    app:layout_constraintCircleRadius="@dimen/editor_size"
-    app:layout_constraintStart_toStartOf="parent" />
+    android:layout_alignParentStart="true"
+    android:layout_alignParentLeft="true"
+    android:layout_margin="8dp"
+    android:src="@drawable/ic_close"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/guideline" />
 
   <TextView
     android:id="@+id/txtCurrentTool"
@@ -114,7 +101,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    android:src="@drawable/ic_save"
+    android:src="@drawable/ic_tick"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/guideline" />

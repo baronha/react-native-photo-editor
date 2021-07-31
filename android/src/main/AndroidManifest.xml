@@ -2,10 +2,12 @@
   xmlns:tools="http://schemas.android.com/tools"
   package="com.reactnativephotoeditor">
 
-  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
   <application
     android:allowBackup="false"
-    tools:replace="android:allowBackup">
+    tools:replace="android:allowBackup"
+    android:requestLegacyExternalStorage="true"
+    >
     <activity
       android:name=".activity.PhotoEditorActivity"
       android:configChanges="orientation|keyboardHidden|screenSize" />

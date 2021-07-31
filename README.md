@@ -9,6 +9,12 @@ This lib is for personal use, so if you customize your style or change something
 - [iOS](https://github.com/muukii/Brightroom)
 - [Android](https://github.com/burhanrashid52/PhotoEditor)
 
+## ScreenShot 👉👈
+
+| iOS                                                  | Android                                                  |
+| ---------------------------------------------------- | -------------------------------------------------------- |
+| <img src="./resources/Screenshow_iOS.png" height="720px"> | <img src="./resources/Screenshow_Android.png" height="720px"> |
+
 ## Installation
 
 ```sh

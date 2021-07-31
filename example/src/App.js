@@ -11,7 +11,7 @@ const App = () => {
   const [photo, setPhoto] = useState({});
 
   const openPicker = () => {
-    ImagePicker.openPicker()
+    ImagePicker.openPicker({ singleSelectedMode: true })
       .then((result) => {
         console.log('result', result);
         setPhoto(result[0]);
@@ -24,7 +24,8 @@ const App = () => {
   const onEdit = async () => {
     try {
       const path = await PhotoEditor.open({
-        // path: photo.path.replace('file://', ''),
+        // path: 'https://images.unsplash.com/photo-1627532383712-981b37b4085c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+        path: photo.path.replace('file://', ''),
       });
       setPhoto({
         ...photo,
@@ -48,7 +49,7 @@ const App = () => {
           />
         )}
       </TouchableOpacity>
-      <TouchableOpacity style={style.openPicker} onPress={onEdit}>
+      <TouchableOpacity style={style.openPicker} onPress={openPicker}>
         <Text style={style.titleOpen}>Open Picker</Text>
       </TouchableOpacity>
     </View>
