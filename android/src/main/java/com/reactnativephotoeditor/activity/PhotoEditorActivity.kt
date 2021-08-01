@@ -291,8 +291,14 @@ open class PhotoEditorActivity : AppCompatActivity(), OnPhotoEditorListener, Vie
     builder.setMessage(getString(R.string.msg_save_image))
     builder.setPositiveButton("Save") { _: DialogInterface?, _: Int -> saveImage() }
     builder.setNegativeButton("Cancel") { dialog: DialogInterface, _: Int -> dialog.dismiss() }
-    builder.setNeutralButton("Discard") { _: DialogInterface?, _: Int -> finish() }
+    builder.setNeutralButton("Discard") { _: DialogInterface?, _: Int -> onCancel() }
     builder.create().show()
+  }
+
+  private fun onCancel(){
+    val intent = Intent()
+    setResult(RESULT_CANCELED, intent)
+    finish()
   }
 
   override fun onFilterSelected(photoFilter: PhotoFilter) {
@@ -365,7 +371,7 @@ open class PhotoEditorActivity : AppCompatActivity(), OnPhotoEditorListener, Vie
     } else if (!mPhotoEditor!!.isCacheEmpty) {
       showSaveDialog()
     } else {
-      super.onBackPressed()
+      onCancel()
     }
   }
 
