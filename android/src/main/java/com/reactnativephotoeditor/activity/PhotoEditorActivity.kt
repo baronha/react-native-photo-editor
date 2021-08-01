@@ -9,9 +9,9 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Typeface
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.Environment
-import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import android.view.Window
@@ -19,9 +19,7 @@ import android.view.WindowManager
 import android.view.animation.AnticipateOvershootInterpolator
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.annotation.NonNull
-import androidx.annotation.VisibleForTesting
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -33,7 +31,6 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.ChangeBounds
 import androidx.transition.TransitionManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.google.android.material.snackbar.Snackbar
 import com.reactnativephotoeditor.R
 import com.reactnativephotoeditor.activity.EmojiBSFragment.EmojiListener
 import com.reactnativephotoeditor.activity.StickerBSFragment.StickerListener
@@ -47,7 +44,6 @@ import ja.burhanrashid52.photoeditor.PhotoEditor.OnSaveListener
 import ja.burhanrashid52.photoeditor.shape.ShapeBuilder
 import ja.burhanrashid52.photoeditor.shape.ShapeType
 import java.io.File
-import java.io.IOException
 
 
 open class PhotoEditorActivity : AppCompatActivity(), OnPhotoEditorListener, View.OnClickListener, PropertiesBSFragment.Properties, ShapeBSFragment.Properties, EmojiListener, StickerListener, OnItemSelected, FilterListener {
@@ -68,25 +64,27 @@ open class PhotoEditorActivity : AppCompatActivity(), OnPhotoEditorListener, Vie
   private val mConstraintSet = ConstraintSet()
   private var mIsFilterVisible = false
 
-  @VisibleForTesting
-  var mSaveImageUri: Uri? = null
-  private var mSaveFileHelper: FileSaveHelper? = null
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     makeFullScreen()
     setContentView(R.layout.photo_editor_view)
     initViews()
     mPropertiesBSFragment = PropertiesBSFragment()
-    mEmojiBSFragment = EmojiBSFragment()
-    mStickerBSFragment = StickerBSFragment()
-    mShapeBSFragment = ShapeBSFragment()
-    mStickerBSFragment!!.setStickerListener(this)
-    mEmojiBSFragment!!.setEmojiListener(this)
     mPropertiesBSFragment!!.setPropertiesChangeListener(this)
+
+    mEmojiBSFragment = EmojiBSFragment()
+    mEmojiBSFragment!!.setEmojiListener(this)
+
+    mStickerBSFragment = StickerBSFragment()
+    mStickerBSFragment!!.setStickerListener(this)
+
+    mShapeBSFragment = ShapeBSFragment()
     mShapeBSFragment!!.setPropertiesChangeListener(this)
+
     val llmTools = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
     mRvTools!!.layoutManager = llmTools
     mRvTools!!.adapter = mEditingToolsAdapter
+
     val llmFilters = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
     mRvFilters!!.layoutManager = llmFilters
     mRvFilters!!.adapter = mFilterViewAdapter
@@ -104,10 +102,7 @@ open class PhotoEditorActivity : AppCompatActivity(), OnPhotoEditorListener, Vie
     val path = value?.getString("path")
 
     val uri = Uri.parse(path)
-    println("uri: $uri")
-//    mPhotoEditorView!!.source.setImageURI(uri)
     mPhotoEditorView!!.source.setImageURI(uri)
-    mSaveFileHelper = FileSaveHelper(this)
   }
 
   private fun showLoading(message: String) {
@@ -126,7 +121,6 @@ open class PhotoEditorActivity : AppCompatActivity(), OnPhotoEditorListener, Vie
 
   private fun requestPermission(permission: String) {
     val isGranted = ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED
-    println("isGranted $isGranted")
     if (!isGranted) {
       ActivityCompat.requestPermissions(
         this, arrayOf(permission),
@@ -158,8 +152,6 @@ open class PhotoEditorActivity : AppCompatActivity(), OnPhotoEditorListener, Vie
     mRvTools = findViewById(R.id.rvConstraintTools)
     mRvFilters = findViewById(R.id.rvFilterView)
     mRootView = findViewById(R.id.rootView)
-
-
   }
 
   override fun onEditTextChangeListener(rootView: View, text: String, colorCode: Int) {
@@ -206,10 +198,14 @@ open class PhotoEditorActivity : AppCompatActivity(), OnPhotoEditorListener, Vie
     }
   }
 
+  private fun isSdkHigherThan28(): Boolean {
+    return Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
+  }
+
   private fun saveImage() {
     val fileName = System.currentTimeMillis().toString() + ".png"
     val hasStoragePermission = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
-    if (hasStoragePermission || FileSaveHelper.isSdkHigherThan28()) {
+    if (hasStoragePermission || isSdkHigherThan28()) {
       showLoading("Saving...")
       val path: File = Environment.getExternalStoragePublicDirectory(
         Environment.DIRECTORY_PICTURES)
@@ -229,29 +225,6 @@ open class PhotoEditorActivity : AppCompatActivity(), OnPhotoEditorListener, Vie
           hideLoading()
         }
       })
-
-//      mSaveFileHelper!!.createFile(fileName) { fileCreated: Boolean, filePath: String?, error: String, uri: Uri? ->
-//        if (fileCreated) {
-//          val saveSettings = SaveSettings.Builder()
-//            .setClearViewsEnabled(true)
-//            .setTransparencyEnabled(true)
-//            .build()
-//          mPhotoEditor!!.saveAsFile(filePath!!, saveSettings, object : OnSaveListener {
-//            override fun onSuccess(imagePath: String) {
-//              mSaveFileHelper!!.notifyThatFileIsNowPubliclyAvailable(contentResolver)
-//              hideLoading()
-//              mSaveImageUri = uri
-//              mPhotoEditorView!!.source.setImageURI(mSaveImageUri)
-//            }
-//
-//            override fun onFailure(exception: Exception) {
-//              hideLoading()
-//            }
-//          })
-//        } else {
-//          hideLoading()
-//        }
-//      }
     } else {
       requestPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
     }
@@ -295,7 +268,7 @@ open class PhotoEditorActivity : AppCompatActivity(), OnPhotoEditorListener, Vie
     builder.create().show()
   }
 
-  private fun onCancel(){
+  private fun onCancel() {
     val intent = Intent()
     setResult(RESULT_CANCELED, intent)
     finish()

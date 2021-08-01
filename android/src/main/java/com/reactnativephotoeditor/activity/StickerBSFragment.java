@@ -20,6 +20,8 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.reactnativephotoeditor.R;
 
+import org.jetbrains.annotations.NotNull;
+
 public class StickerBSFragment extends BottomSheetDialogFragment {
 
     public StickerBSFragment() {
@@ -36,7 +38,7 @@ public class StickerBSFragment extends BottomSheetDialogFragment {
         void onStickerClick(Bitmap bitmap);
     }
 
-    private BottomSheetBehavior.BottomSheetCallback mBottomSheetBehaviorCallback = new BottomSheetBehavior.BottomSheetCallback() {
+    private final BottomSheetBehavior.BottomSheetCallback mBottomSheetBehaviorCallback = new BottomSheetBehavior.BottomSheetCallback() {
 
         @Override
         public void onStateChanged(@NonNull View bottomSheet, int newState) {
@@ -54,14 +56,14 @@ public class StickerBSFragment extends BottomSheetDialogFragment {
 
     @SuppressLint("RestrictedApi")
     @Override
-    public void setupDialog(Dialog dialog, int style) {
+    public void setupDialog(@NotNull Dialog dialog, int style) {
         super.setupDialog(dialog, style);
         View contentView = View.inflate(getContext(), R.layout.fragment_bottom_sticker_emoji_dialog, null);
         dialog.setContentView(contentView);
         CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) ((View) contentView.getParent()).getLayoutParams();
         CoordinatorLayout.Behavior behavior = params.getBehavior();
 
-        if (behavior != null && behavior instanceof BottomSheetBehavior) {
+        if (behavior instanceof BottomSheetBehavior) {
             ((BottomSheetBehavior) behavior).setBottomSheetCallback(mBottomSheetBehaviorCallback);
         }
         ((View) contentView.getParent()).setBackgroundColor(getResources().getColor(android.R.color.transparent));
@@ -83,6 +85,7 @@ public class StickerBSFragment extends BottomSheetDialogFragment {
 
         int[] stickerList = new int[]{R.drawable.aa, R.drawable.bb};
 
+        @NotNull
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_sticker, parent, false);
