@@ -73,7 +73,7 @@ const result = await PhotoEditor.open(Options);
 | ![](resources/filters_ios.png) | ![](resources/filters_android.png) |
 
 ### Custom Filters(iOS)
-## LUT (Hald image)
+#### LUT (Hald image)
 
 [How to create cube data from LUT Image](https://www.notion.so/CoreImage-How-to-create-cube-data-from-LUT-Image-for-CIColorCube-CIColorCubeWithColorSpace-9e554fd418e8463abb25d6232613ac1c)
 
