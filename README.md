@@ -7,7 +7,7 @@
 </p>
 
 # Note
-(The difference between the 2 platforms is huge - Be careful when using)<br/>
+*The difference between the 2 platforms is huge - Be careful when using*<br/>
 This lib is for personal use, so if you customize your style or change something, Please fork this library and check the detailed documentation in the original library:
 
 - [iOS](https://github.com/muukii/Brightroom)
