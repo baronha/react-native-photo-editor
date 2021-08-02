@@ -8,6 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* PhotoEditorExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* PhotoEditorExampleTests.m */; };
+		0E1B0D3F26B813D9009F9BAC /* LUT_64_Bagan.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E1B0D3E26B813D9009F9BAC /* LUT_64_Bagan.png */; };
+		0E1B0D4126B8152E009F9BAC /* LUT_64_DaLat.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E1B0D4026B8152E009F9BAC /* LUT_64_DaLat.png */; };
+		0E1B0D4326B816F5009F9BAC /* LUT_64_SaiGon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E1B0D4226B816F5009F9BAC /* LUT_64_SaiGon.png */; };
+		0E1B0D4626B81A01009F9BAC /* LUT_64_Osaka.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E1B0D4426B81A01009F9BAC /* LUT_64_Osaka.png */; };
+		0E1B0D4726B81A01009F9BAC /* LUT_64_Tokyo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E1B0D4526B81A01009F9BAC /* LUT_64_Tokyo.png */; };
+		0E1B0D4E26B81D67009F9BAC /* LUT_64_L.A.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E1B0D4826B81D67009F9BAC /* LUT_64_L.A.png */; };
+		0E1B0D4F26B81D67009F9BAC /* LUT_64_Prague.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E1B0D4926B81D67009F9BAC /* LUT_64_Prague.png */; };
+		0E1B0D5026B81D67009F9BAC /* LUT_64_California.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E1B0D4A26B81D67009F9BAC /* LUT_64_California.png */; };
+		0E1B0D5126B81D67009F9BAC /* LUT_64_Rome.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E1B0D4B26B81D67009F9BAC /* LUT_64_Rome.png */; };
+		0E1B0D5226B81D67009F9BAC /* LUT_64_Jeju.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E1B0D4C26B81D67009F9BAC /* LUT_64_Jeju.png */; };
+		0E1B0D5326B81D67009F9BAC /* LUT_64_Santorini.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E1B0D4D26B81D67009F9BAC /* LUT_64_Santorini.png */; };
+		0E1B0D5626B81F43009F9BAC /* LUT_64_HongKong.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E1B0D5426B81F43009F9BAC /* LUT_64_HongKong.png */; };
+		0E1B0D5726B81F43009F9BAC /* LUT_64_Paris.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E1B0D5526B81F43009F9BAC /* LUT_64_Paris.png */; };
+		0E9EC48626B7D3EC0054EA0F /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9EC48426B7D3EC0054EA0F /* File.swift */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -41,6 +55,21 @@
 		00E356EE1AD99517003FC87E /* PhotoEditorExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhotoEditorExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* PhotoEditorExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoEditorExampleTests.m; sourceTree = "<group>"; };
+		0E1B0D3E26B813D9009F9BAC /* LUT_64_Bagan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LUT_64_Bagan.png; sourceTree = "<group>"; };
+		0E1B0D4026B8152E009F9BAC /* LUT_64_DaLat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LUT_64_DaLat.png; sourceTree = "<group>"; };
+		0E1B0D4226B816F5009F9BAC /* LUT_64_SaiGon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LUT_64_SaiGon.png; sourceTree = "<group>"; };
+		0E1B0D4426B81A01009F9BAC /* LUT_64_Osaka.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LUT_64_Osaka.png; sourceTree = "<group>"; };
+		0E1B0D4526B81A01009F9BAC /* LUT_64_Tokyo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LUT_64_Tokyo.png; sourceTree = "<group>"; };
+		0E1B0D4826B81D67009F9BAC /* LUT_64_L.A.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LUT_64_L.A.png; sourceTree = "<group>"; };
+		0E1B0D4926B81D67009F9BAC /* LUT_64_Prague.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LUT_64_Prague.png; sourceTree = "<group>"; };
+		0E1B0D4A26B81D67009F9BAC /* LUT_64_California.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LUT_64_California.png; sourceTree = "<group>"; };
+		0E1B0D4B26B81D67009F9BAC /* LUT_64_Rome.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LUT_64_Rome.png; sourceTree = "<group>"; };
+		0E1B0D4C26B81D67009F9BAC /* LUT_64_Jeju.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LUT_64_Jeju.png; sourceTree = "<group>"; };
+		0E1B0D4D26B81D67009F9BAC /* LUT_64_Santorini.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LUT_64_Santorini.png; sourceTree = "<group>"; };
+		0E1B0D5426B81F43009F9BAC /* LUT_64_HongKong.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LUT_64_HongKong.png; sourceTree = "<group>"; };
+		0E1B0D5526B81F43009F9BAC /* LUT_64_Paris.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LUT_64_Paris.png; sourceTree = "<group>"; };
+		0E9EC48426B7D3EC0054EA0F /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		0E9EC48526B7D3EC0054EA0F /* PhotoEditorExample-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PhotoEditorExample-Bridging-Header.h"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* PhotoEditorExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoEditorExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = PhotoEditorExample/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = PhotoEditorExample/AppDelegate.m; sourceTree = "<group>"; };
@@ -107,6 +136,26 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		0E9EC4A726B7FAA00054EA0F /* LUTs */ = {
+			isa = PBXGroup;
+			children = (
+				0E1B0D5426B81F43009F9BAC /* LUT_64_HongKong.png */,
+				0E1B0D5526B81F43009F9BAC /* LUT_64_Paris.png */,
+				0E1B0D4A26B81D67009F9BAC /* LUT_64_California.png */,
+				0E1B0D4C26B81D67009F9BAC /* LUT_64_Jeju.png */,
+				0E1B0D4826B81D67009F9BAC /* LUT_64_L.A.png */,
+				0E1B0D4926B81D67009F9BAC /* LUT_64_Prague.png */,
+				0E1B0D4B26B81D67009F9BAC /* LUT_64_Rome.png */,
+				0E1B0D4D26B81D67009F9BAC /* LUT_64_Santorini.png */,
+				0E1B0D4426B81A01009F9BAC /* LUT_64_Osaka.png */,
+				0E1B0D4526B81A01009F9BAC /* LUT_64_Tokyo.png */,
+				0E1B0D4226B816F5009F9BAC /* LUT_64_SaiGon.png */,
+				0E1B0D4026B8152E009F9BAC /* LUT_64_DaLat.png */,
+				0E1B0D3E26B813D9009F9BAC /* LUT_64_Bagan.png */,
+			);
+			path = LUTs;
+			sourceTree = "<group>";
+		};
 		13B07FAE1A68108700A75B9A /* PhotoEditorExample */ = {
 			isa = PBXGroup;
 			children = (
@@ -137,7 +186,6 @@
 				47F7ED3B7971BE374F7B8635 /* Pods-PhotoEditorExample.debug.xcconfig */,
 				E00ACF0FDA8BF921659E2F9A /* Pods-PhotoEditorExample.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -151,6 +199,9 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				0E9EC4A726B7FAA00054EA0F /* LUTs */,
+				0E9EC48426B7D3EC0054EA0F /* File.swift */,
+				0E9EC48526B7D3EC0054EA0F /* PhotoEditorExample-Bridging-Header.h */,
 				13B07FAE1A68108700A75B9A /* PhotoEditorExample */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* PhotoEditorExampleTests */,
@@ -206,7 +257,6 @@
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				C1D60D28B925C94BD88E79D7 /* [CP] Copy Pods Resources */,
-				EFAB0EA8D45BBC30904237DE /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -267,7 +317,8 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						LastSwiftMigration = 1120;
+						DevelopmentTeam = MH67NQJ66H;
+						LastSwiftMigration = 1250;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -313,8 +364,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E1B0D4F26B81D67009F9BAC /* LUT_64_Prague.png in Resources */,
+				0E1B0D5126B81D67009F9BAC /* LUT_64_Rome.png in Resources */,
+				0E1B0D4726B81A01009F9BAC /* LUT_64_Tokyo.png in Resources */,
+				0E1B0D4E26B81D67009F9BAC /* LUT_64_L.A.png in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
+				0E1B0D5226B81D67009F9BAC /* LUT_64_Jeju.png in Resources */,
+				0E1B0D5726B81F43009F9BAC /* LUT_64_Paris.png in Resources */,
+				0E1B0D5626B81F43009F9BAC /* LUT_64_HongKong.png in Resources */,
+				0E1B0D4626B81A01009F9BAC /* LUT_64_Osaka.png in Resources */,
+				0E1B0D4326B816F5009F9BAC /* LUT_64_SaiGon.png in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				0E1B0D3F26B813D9009F9BAC /* LUT_64_Bagan.png in Resources */,
+				0E1B0D4126B8152E009F9BAC /* LUT_64_DaLat.png in Resources */,
+				0E1B0D5326B81D67009F9BAC /* LUT_64_Santorini.png in Resources */,
+				0E1B0D5026B81D67009F9BAC /* LUT_64_California.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,6 +457,7 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PhotoEditorExample/Pods-PhotoEditorExample-resources.sh",
+				"${PODS_ROOT}/Brightroom/Sources/BrightroomUI/Media.xcassets",
 				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
 				"${PODS_ROOT}/TLPhotoPicker/TLPhotoPicker/TLPhotoPickerController.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/TLPhotoPicker/TLPhotoPicker.bundle",
@@ -401,6 +466,7 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Assets.car",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TLPhotoPickerController.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TLPhotoPicker.bundle",
@@ -409,24 +475,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PhotoEditorExample/Pods-PhotoEditorExample-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EFAB0EA8D45BBC30904237DE /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PhotoEditorExample/Pods-PhotoEditorExample-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenSSL/OpenSSL.framework/OpenSSL",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OpenSSL.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PhotoEditorExample/Pods-PhotoEditorExample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -483,6 +531,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				0E9EC48626B7D3EC0054EA0F /* File.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -523,6 +572,7 @@
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -545,6 +595,7 @@
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = PhotoEditorExampleTests/Info.plist;
@@ -568,6 +619,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = MH67NQJ66H;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = PhotoEditorExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -591,6 +643,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = MH67NQJ66H;
 				INFOPLIST_FILE = PhotoEditorExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -758,12 +811,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "/usr/lib/swift $(inherited)";
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
-					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
-					"\"$(inherited)\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.3/$(PLATFORM_NAME)\"",
 				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -811,14 +863,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "/usr/lib/swift $(inherited)";
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
-					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
-					"\"$(inherited)\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.3/$(PLATFORM_NAME)\"",
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

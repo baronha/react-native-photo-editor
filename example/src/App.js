@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import {
+  SafeAreaView,
+  Text,
+  StyleSheet,
+  Dimensions,
+  TouchableOpacity,
+} from 'react-native';
 import ImagePicker from '@baronha/react-native-multiple-image-picker';
 import { Image } from 'react-native';
-import { TouchableOpacity } from 'react-native';
 import PhotoEditor from '@baronha/react-native-photo-editor';
 
 const { width } = Dimensions.get('window');
@@ -38,7 +43,7 @@ const App = () => {
   };
 
   return (
-    <View style={style.container}>
+    <SafeAreaView style={style.container}>
       <TouchableOpacity onPress={onEdit}>
         {photo?.path && (
           <Image
@@ -52,7 +57,7 @@ const App = () => {
       <TouchableOpacity style={style.openPicker} onPress={openPicker}>
         <Text style={style.titleOpen}>Open Picker</Text>
       </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   );
 };
 
