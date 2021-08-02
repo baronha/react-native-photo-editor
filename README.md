@@ -78,7 +78,7 @@ const result = await PhotoEditor.open(Options);
 [How to create cube data from LUT Image](https://www.notion.so/CoreImage-How-to-create-cube-data-from-LUT-Image-for-CIColorCube-CIColorCubeWithColorSpace-9e554fd418e8463abb25d6232613ac1c)
 
 We can download the neutral LUT image from [lutCreator.js](https://sirserch.github.io/lut-creator-js/#).
-### [Hald Images](https://3dlutcreator.com/3d-lut-creator---materials-and-luts.html)
+#### [Hald Images](https://3dlutcreator.com/3d-lut-creator---materials-and-luts.html)
 > Hald is a graphical representation of 3D LUT in a form of a color table which contains all of the color gradations of 3D LUT. If Hald is loaded into editing software and a color correction is applied to it, you can use 3D LUT Creator to convert your Hald into 3D LUT and apply it to a photo or a video in your editor.
 
 [Detailed documentations are available on here](https://www.notion.so/Creating-your-own-filters-LUT-d1942f2f5bcc44d88481d0a0cc4aacb3#d7bba7a891234ea48f1854b5e555366a)
