@@ -39,7 +39,7 @@ class PhotoEditorModule(reactContext: ReactApplicationContext) : ReactContextBas
             promise?.resolve("file://$path")
           }
           Activity.RESULT_CANCELED -> {
-            promise?.reject("User Cancelled")
+            promise?.reject("User_Cancelled")
           }
         }
       }

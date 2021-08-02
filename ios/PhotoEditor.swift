@@ -26,12 +26,22 @@ class PhotoEditor: NSObject {
         ColorCubeStorage.loadToDefault()
         let path = options["path"] as! String
         let image = getUIImage(path: path)
+        //check exist image in local
+        if(image == nil){
+            reject("Dont_find_image", "Couldn't find the image", nil)
+            return;
+        }
         
         // Creating view controller
         let stack = EditingStack(
             imageProvider: .init(image: image!)
         )
         self.present(stack)
+    }
+    
+    private func setConfiguration(options: NSDictionary, resolve:@escaping RCTPromiseResolveBlock,reject:@escaping RCTPromiseRejectBlock) -> Void{
+        self.resolve = resolve;
+        self.reject = reject;
     }
     
     private func present(_ editingStack: EditingStack) {
@@ -69,6 +79,7 @@ class PhotoEditor: NSObject {
             
             controller.handlers.didCancelEditing = { controller in
                 controller.dismiss(animated: true, completion: nil)
+                self.reject("User_Cancelled", "User canceled editing", nil)
             }
             
             let navigationController = UINavigationController(rootViewController: controller)
@@ -83,11 +94,6 @@ class PhotoEditor: NSObject {
         let uri = path.replacingOccurrences(of: "file://", with: "")
         let image: UIImage? = UIImage(contentsOfFile: uri)
         return image
-    }
-    
-    private func setConfiguration(options: NSDictionary, resolve:@escaping RCTPromiseResolveBlock,reject:@escaping RCTPromiseRejectBlock) -> Void{
-        self.resolve = resolve;
-        self.reject = reject;
     }
     
     func getTopMostViewController() -> UIViewController? {

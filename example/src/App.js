@@ -5,9 +5,9 @@ import {
   StyleSheet,
   Dimensions,
   TouchableOpacity,
+  Image,
 } from 'react-native';
 import ImagePicker from '@baronha/react-native-multiple-image-picker';
-import { Image } from 'react-native';
 import PhotoEditor from '@baronha/react-native-photo-editor';
 
 const { width } = Dimensions.get('window');
