@@ -1,7 +1,7 @@
 {
   "name": "@baronha/react-native-photo-editor",
   "version": "0.1.0",
-  "description": "photo editor using native module",
+  "description": "🌄 Image editor using native modules for iOS and Android",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
