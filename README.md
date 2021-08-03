@@ -91,7 +91,6 @@ You have to copy [this folder](https://github.com/baronha/react-native-photo-edi
 
 - [ ] Customize.
 - [ ] Sync between two platforms.
-- [ ] 
 
 ## Contributing
 
