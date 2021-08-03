@@ -12,6 +12,7 @@ Pod::Spec.new do |s|
 
   s.platforms    = { :ios => "12.0" }
   s.source       = { :git => "https://github.com/baronha/react-native-photo-editor.git", :tag => "#{s.version}" }
+  s.swift_version = '5.3'
 
   s.source_files = "ios/**/*.{h,m,mm,swift}"
   
