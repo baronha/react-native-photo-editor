@@ -8,8 +8,8 @@
 import Foundation
 import UIKit
 import Photos
-
 import Brightroom
+import ZLImageEditor
 
 @objc(PhotoEditor)
 class PhotoEditor: NSObject {
@@ -19,24 +19,21 @@ class PhotoEditor: NSObject {
     //resolve/reject assets
     var resolve: RCTPromiseResolveBlock!
     var reject: RCTPromiseRejectBlock!
+    var topViewController: UIViewController!
     
     @objc(open:withResolver:withRejecter:)
     func open(options: NSDictionary, resolve:@escaping RCTPromiseResolveBlock,reject:@escaping RCTPromiseRejectBlock) -> Void {
-        self.setConfiguration(options: options, resolve: resolve, reject: reject)
-        ColorCubeStorage.loadToDefault()
-        let path = options["path"] as! String
-        let image = getUIImage(path: path)
-        //check exist image in local
-        if(image == nil){
-            reject("Dont_find_image", "Couldn't find the image", nil)
-            return;
+        DispatchQueue.main.async {
+            if let topVC = UIApplication.getTopViewController() {
+                self.topViewController = topVC
+                let picker = UIImagePickerController()
+                picker.delegate = self
+                self.resolve = resolve
+                picker.sourceType = .photoLibrary
+                picker.mediaTypes = ["public.image"]
+                topVC.showDetailViewController(picker, sender: self)
+            }
         }
-        
-        // Creating view controller
-        let stack = EditingStack(
-            imageProvider: .init(image: image!)
-        )
-        self.present(stack)
     }
     
     private func setConfiguration(options: NSDictionary, resolve:@escaping RCTPromiseResolveBlock,reject:@escaping RCTPromiseRejectBlock) -> Void{
@@ -115,5 +112,54 @@ extension ColorCubeStorage {
         } catch {
             assertionFailure("\(error)")
         }
+    }
+}
+
+extension PhotoEditor: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true) {
+            DispatchQueue.main.async {
+                
+                if let topVC = UIApplication.getTopViewController() {
+                    guard let image = info[.originalImage] as? UIImage else { return }
+                    ZLEditImageViewController.showEditImageVC(parentVC:topVC , image: image, editModel: .none) { [weak self] (resImage, editModel) in
+                        
+                        let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+                        let fileURL = documentsDirectory.appendingPathComponent("editImage\(Date()).jpg")
+                        if let data = resImage.jpegData(compressionQuality: 1.0) {
+                            do {
+                                try data.write(to: fileURL)
+                                self?.resolve(fileURL.absoluteString)
+                            } catch {
+                                print("error saving file to documents:", error)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+}
+
+
+extension UIApplication {
+
+    class func getTopViewController(base: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+
+        if let nav = base as? UINavigationController {
+            return getTopViewController(base: nav.visibleViewController)
+        } else if let tab = base as? UITabBarController, let selected = tab.selectedViewController {
+            return getTopViewController(base: selected)
+        } else if let presented = base?.presentedViewController {
+            return getTopViewController(base: presented)
+        }
+        
+        return base
     }
 }

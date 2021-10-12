@@ -15,23 +15,11 @@ const { width } = Dimensions.get('window');
 const App = () => {
   const [photo, setPhoto] = useState({});
 
-  const openPicker = () => {
-    ImagePicker.openPicker({ singleSelectedMode: true })
-      .then((result) => {
-        console.log('result', result);
-        setPhoto(result[0]);
-      })
-      .then((e) => {
-        // console.log('error');
-      });
-  };
 
   const onEdit = async () => {
+    debugger
     try {
-      const path = await PhotoEditor.open({
-        // path: 'https://images.unsplash.com/photo-1627532383712-981b37b4085c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
-        path: photo.path,
-      });
+      const path = await PhotoEditor.open({path: photo.path});
       setPhoto({
         ...photo,
         path,
@@ -54,7 +42,7 @@ const App = () => {
           />
         )}
       </TouchableOpacity>
-      <TouchableOpacity style={style.openPicker} onPress={openPicker}>
+      <TouchableOpacity style={style.openPicker} onPress={onEdit}>
         <Text style={style.titleOpen}>Open Picker</Text>
       </TouchableOpacity>
     </SafeAreaView>
