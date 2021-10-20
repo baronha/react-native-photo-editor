@@ -8,112 +8,84 @@
 import Foundation
 import UIKit
 import Photos
-
-import Brightroom
+import ZLImageEditor
 
 @objc(PhotoEditor)
 class PhotoEditor: NSObject {
     var window: UIWindow?
     var bridge: RCTBridge!
     
-    //resolve/reject assets
     var resolve: RCTPromiseResolveBlock!
     var reject: RCTPromiseRejectBlock!
     
     @objc(open:withResolver:withRejecter:)
     func open(options: NSDictionary, resolve:@escaping RCTPromiseResolveBlock,reject:@escaping RCTPromiseRejectBlock) -> Void {
-        self.setConfiguration(options: options, resolve: resolve, reject: reject)
-        ColorCubeStorage.loadToDefault()
+        
+        // handle path
         let path = options["path"] as! String
-        let image = getUIImage(path: path)
-        //check exist image in local
-        if(image == nil){
+        guard let image = self.getUIImage(path: path) else {
             reject("Dont_find_image", "Couldn't find the image", nil)
-            return;
+            return
         }
         
-        // Creating view controller
-        let stack = EditingStack(
-            imageProvider: .init(image: image!)
-        )
-        self.present(stack)
+        
+        DispatchQueue.main.async {
+            //  set config
+            self.setConfiguration(options: options, resolve: resolve, reject: reject)
+            self.presentController(image: image)
+        }
     }
     
     private func setConfiguration(options: NSDictionary, resolve:@escaping RCTPromiseResolveBlock,reject:@escaping RCTPromiseRejectBlock) -> Void{
         self.resolve = resolve;
         self.reject = reject;
-    }
-    
-    private func present(_ editingStack: EditingStack) {
-        DispatchQueue.main.async {
-            var options = ClassicImageEditOptions()
-            options.croppingAspectRatio = .none
-            //      options.classes.control.rootControl = Control.self
-            let controller = ClassicImageEditViewController(editingStack: editingStack, options: options)
-            
-            controller.handlers.didEndEditing = { [weak self] controller, stack in
-                
-                guard self != nil else { return }
-                controller.dismiss(animated: true, completion: nil)
-                
-                try! stack.makeRenderer().render { result in
-                    switch result {
-                    case let .success(rendered):
-                        let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
-                        
-                        let destinationPath = URL(fileURLWithPath: documentsPath).appendingPathComponent(String(Int64(Date().timeIntervalSince1970 * 1000)) + ".png")
-                        
-                        do {
-                            try rendered.uiImage.pngData()?.write(to: destinationPath)
-                            self?.resolve(destinationPath.absoluteString)
-                        } catch {
-                            debugPrint("writing file error", error)
-                        }
-                        
-                        break;
-                    case let .failure(error):
-                        print(error)
-                    }
-                }
-            }
-            
-            controller.handlers.didCancelEditing = { controller in
-                controller.dismiss(animated: true, completion: nil)
-                self.reject("User_Cancelled", "User canceled editing", nil)
-            }
-            
-            let navigationController = UINavigationController(rootViewController: controller)
-            
-            navigationController.modalPresentationStyle = .fullScreen
-            
-            self.getTopMostViewController()?.present(navigationController, animated: true, completion: nil)
+        
+        ZLImageEditorConfiguration.default().imageStickerContainerView = StickerView()
+        ZLImageEditorConfiguration.default().editDoneBtnBgColor = UIColor(red:255/255.0, green:76/255.0, blue:41/255.0, alpha:1.0)
+        do {
+            let filters = ColorCubeLoader(bundle: .main)
+            ZLImageEditorConfiguration.default().filters = try filters.load()
+        } catch {
+            assertionFailure("\(error)")
         }
     }
+    
+    private func presentController(image: UIImage) {
+        if let controller = UIApplication.getTopViewController() {
+            ZLEditImageViewController.showEditImageVC(parentVC:controller , image: image) { [weak self] (resImage, editModel) in
+                let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
+                
+                let destinationPath = URL(fileURLWithPath: documentsPath).appendingPathComponent(String(Int64(Date().timeIntervalSince1970 * 1000)) + ".png")
+                
+                do {
+                    try resImage.pngData()?.write(to: destinationPath)
+                    self?.resolve(destinationPath.absoluteString)
+                } catch {
+                    debugPrint("writing file error", error)
+                }
+            }
+        }
+    }
+    
     
     func getUIImage(path: String) -> UIImage?  {
         let uri = path.replacingOccurrences(of: "file://", with: "")
         let image: UIImage? = UIImage(contentsOfFile: uri)
         return image
     }
-    
-    func getTopMostViewController() -> UIViewController? {
-        var topMostViewController = UIApplication.shared.keyWindow?.rootViewController
-        while let presentedViewController = topMostViewController?.presentedViewController {
-            topMostViewController = presentedViewController
-        }
-        return topMostViewController
-    }
-    
 }
 
-extension ColorCubeStorage {
-    static func loadToDefault() {
-        do {
-            let loader = ColorCubeLoader(bundle: .main)
-            self.default.filters = try loader.load()
-            
-        } catch {
-            assertionFailure("\(error)")
+extension UIApplication {
+    class func getTopViewController(base: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+        
+        if let nav = base as? UINavigationController {
+            return getTopViewController(base: nav.visibleViewController)
+        } else if let tab = base as? UITabBarController, let selected = tab.selectedViewController {
+            return getTopViewController(base: selected)
+        } else if let presented = base?.presentedViewController {
+            return getTopViewController(base: presented)
         }
+        
+        return base
     }
 }
