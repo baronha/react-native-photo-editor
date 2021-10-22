@@ -14,6 +14,8 @@ const { width } = Dimensions.get('window');
 
 const App = () => {
   const [photo, setPhoto] = useState({});
+  const remoteURL =
+    'https://images.unsplash.com/photo-1634915728822-5ad85582837a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=774&q=80';
 
   const openPicker = () => {
     ImagePicker.openPicker({ singleSelectedMode: true })
@@ -30,7 +32,8 @@ const App = () => {
     try {
       const path = await PhotoEditor.open({
         // path: 'https://images.unsplash.com/photo-1627532383712-981b37b4085c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
-        path: photo.path,
+        path: remoteURL,
+        stickers,
       });
       setPhoto({
         ...photo,
@@ -45,18 +48,24 @@ const App = () => {
   return (
     <SafeAreaView style={style.container}>
       <TouchableOpacity onPress={onEdit}>
-        {photo?.path && (
+        {/* {photo?.path && (
           <Image
             style={style.image}
             source={{
               uri: photo.path,
             }}
           />
-        )}
+        )} */}
+        <Image
+          style={style.image}
+          source={{
+            uri: remoteURL,
+          }}
+        />
       </TouchableOpacity>
-      <TouchableOpacity style={style.openPicker} onPress={openPicker}>
+      {/* <TouchableOpacity style={style.openPicker} onPress={openPicker}>
         <Text style={style.titleOpen}>Open Picker</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </SafeAreaView>
   );
 };
@@ -81,3 +90,25 @@ const style = StyleSheet.create({
     padding: 12,
   },
 });
+
+const stickers = [
+  'https://cdn-icons-png.flaticon.com/512/5272/5272912.png',
+  'https://cdn-icons-png.flaticon.com/512/5272/5272913.png',
+  'https://cdn-icons-png.flaticon.com/512/5272/5272916.png',
+  'https://cdn-icons-png.flaticon.com/512/5272/5272918.png',
+  'https://cdn-icons-png.flaticon.com/512/5272/5272920.png',
+  'https://cdn-icons-png.flaticon.com/512/5272/5272923.png',
+  'https://cdn-icons-png.flaticon.com/512/5272/5272925.png',
+  'https://cdn-icons-png.flaticon.com/512/5272/5272926.png',
+  'https://cdn-icons-png.flaticon.com/512/5272/5272929.png',
+  'https://cdn-icons-png.flaticon.com/512/5272/5272931.png',
+  'https://cdn-icons-png.flaticon.com/512/5272/5272932.png',
+  'https://cdn-icons-png.flaticon.com/512/5272/5272934.png',
+  'https://cdn-icons-png.flaticon.com/512/5272/5272936.png',
+  'https://cdn-icons-png.flaticon.com/512/5272/5272939.png',
+  'https://cdn-icons-png.flaticon.com/512/5272/5272940.png',
+  'https://cdn-icons-png.flaticon.com/512/5272/5272942.png',
+  'https://cdn-icons-png.flaticon.com/512/5272/5272944.png',
+  'https://cdn-icons-png.flaticon.com/512/5272/5272948.png',
+  'https://cdn-icons-png.flaticon.com/512/5272/5272950.png',
+];

@@ -10,20 +10,18 @@ import ZLImageEditor
 
 class StickerView: UIView, ZLImageStickerContainerDelegate {
     
-    static let baseViewH: CGFloat = 400
+    static let baseViewH: CGFloat = 500
     var baseView: UIView!
     var collectionView: UICollectionView!
     var selectImageBlock: ((UIImage) -> Void)?
     var hideBlock: (() -> Void)?
-    let rootPath = Bundle.main.bundlePath as NSString
-    
     var datas : [String] =  []
-    var sections : [String] =  []
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        self.setupData()
+    public init(stickers: [String]) {
+        super.init(frame: .zero)
         self.setupUI()
+        self.datas = stickers
+        self.setupData()
     }
     
     required init?(coder: NSCoder) {
@@ -53,23 +51,8 @@ class StickerView: UIView, ZLImageStickerContainerDelegate {
     }
     
     private func setupData(){
-        var resourcePath = Bundle.main.resourcePath
-        do{
-//            let stickerPath
-            resourcePath?.append("/Stickers")
-            let stickerPacks = try FileManager.default.contentsOfDirectory(atPath: resourcePath!)
-            
-            if(!stickerPacks.isEmpty){
-                for pack in stickerPacks {
-                    let packPath = resourcePath?.appending("/\(pack)")
-                    let stickers = try FileManager.default.contentsOfDirectory(atPath: packPath!)
-                    datas.append(pack)
-                    datas = datas + stickers
-                }
-            }    
-        }catch{
-            print("\(error)")
-        }
+        let fm = FileManager.default
+        datas = datas + fm.getListFileNameInBundle(bundlePath: "Stickers.bundle") 
     }
     
     func setupUI() {
@@ -96,7 +79,7 @@ class StickerView: UIView, ZLImageStickerContainerDelegate {
         }
         
         let hideBtn = UIButton(type: .custom)
-//        hideBtn.setImage(UIImage(named: "close"), for: .normal)
+        //        hideBtn.setImage(UIImage(named: "close"), for: .normal)
         hideBtn.backgroundColor = .clear
         
         hideBtn.titleLabel?.text = "Close"
@@ -155,7 +138,7 @@ class StickerView: UIView, ZLImageStickerContainerDelegate {
         }
         
         self.isHidden = false
-        UIView.animate(withDuration: 0.25) {
+        UIView.animate(withDuration: 0.3) {
             self.baseView.snp.updateConstraints { (make) in
                 make.bottom.equalTo(self.snp.bottom)
             }
@@ -166,7 +149,7 @@ class StickerView: UIView, ZLImageStickerContainerDelegate {
     func hide() {
         self.hideBlock?()
         
-        UIView.animate(withDuration: 0.25) {
+        UIView.animate(withDuration: 0.3) {
             self.baseView.snp.updateConstraints { (make) in
                 make.bottom.equalTo(self.snp.bottom).offset(StickerView.baseViewH)
             }
@@ -174,7 +157,7 @@ class StickerView: UIView, ZLImageStickerContainerDelegate {
         } completion: { (_) in
             self.isHidden = true
         }
-
+        
     }
     
 }
@@ -194,6 +177,9 @@ extension StickerView: UICollectionViewDataSource, UICollectionViewDelegateFlowL
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let column: CGFloat = 4
         let spacing: CGFloat = 20 + 5 * (column - 1)
+        
+        print("spacing: ", spacing)
+        
         let w = (collectionView.frame.width - spacing) / column
         return CGSize(width: w, height: w)
     }
@@ -207,33 +193,49 @@ extension StickerView: UICollectionViewDataSource, UICollectionViewDelegateFlowL
         
         let item = self.datas[indexPath.row]
         
-        if(item.hasSuffix(".png")){
-            let url = URL(fileURLWithPath: rootPath.appendingPathComponent(item))
-            let dataProvider = CGDataProvider(url: url as CFURL)
-            let imageSource = CGImageSourceCreateWithDataProvider(dataProvider!, nil)
-            
-            let image: ImageSource = .init(cgImageSource: imageSource!)
-            let ciImage = image.makeOriginalCIImage()
-            
-            cell.imageView.image = UIImage(ciImage: ciImage)
-        }else{
-//            cell.imageView
+        handleImageInCell(from: item) { image in
+            cell.imageView.image = image
         }
+        
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let image = UIImage(named: self.datas[indexPath.row]) else {
-            return
+        let item = self.datas[indexPath.row]
+        handleImageInCell(from: item) { image in
+            self.selectImageBlock?(image)
+            self.hide()
         }
-        self.selectImageBlock?(image)
-        self.hide()
     }
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
+    func handleImageInCell(from urlString: String, completion: @escaping (UIImage) -> ()) {
+        
+        if(urlString.contains("http")){
+            let url = URL(string: urlString)
+            print("Download Started")
+            getData(from: url!) { data, response, error in
+                guard let data = data, error == nil else { return }
+                print(response?.suggestedFilename ?? url?.lastPathComponent as Any)
+                print("Download Finished")
+                // always update the UI from the main thread
+                DispatchQueue.main.async() {
+                    let image = UIImage(data: data)
+                    completion(image!)
+                }
+            }
+        }else{
+            completion(UIImage(named: urlString)!)
+        }
     }
+    
+    func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
+    }
+    
+    //    func numberOfSections(in collectionView: UICollectionView) -> Int {
+    //        return 2
+    //    }
     
 }
 
@@ -257,4 +259,26 @@ class ImageStickerCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+}
+
+extension FileManager {
+    func getListFileNameInBundle(bundlePath: String) -> [String] {
+        
+        let fileManager = FileManager.default
+        let bundleURL = Bundle.main.bundleURL
+        let assetURL = bundleURL.appendingPathComponent(bundlePath)
+        do {
+            let contents = try fileManager.contentsOfDirectory(at: assetURL, includingPropertiesForKeys: [URLResourceKey.nameKey, URLResourceKey.isDirectoryKey], options: .skipsHiddenFiles)
+            return contents.map{$0.lastPathComponent}
+        }
+        catch {
+            return []
+        }
+    }
+    
+    func getImageInBundle(bundlePath: String) -> UIImage? {
+        let bundleURL = Bundle.main.bundleURL
+        let assetURL = bundleURL.appendingPathComponent(bundlePath)
+        return UIImage.init(contentsOfFile: assetURL.relativePath)
+    }
 }

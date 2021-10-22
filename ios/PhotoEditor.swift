@@ -10,6 +10,10 @@ import UIKit
 import Photos
 import ZLImageEditor
 
+public enum ImageLoad: Error {
+    case failedToLoadImage(String)
+}
+
 @objc(PhotoEditor)
 class PhotoEditor: NSObject {
     var window: UIWindow?
@@ -22,12 +26,10 @@ class PhotoEditor: NSObject {
     func open(options: NSDictionary, resolve:@escaping RCTPromiseResolveBlock,reject:@escaping RCTPromiseRejectBlock) -> Void {
         
         // handle path
-        let path = options["path"] as! String
-        guard let image = self.getUIImage(path: path) else {
+        guard let path = options["path"], let image = self.getUIImage(path: path as! String) else {
             reject("Dont_find_image", "Couldn't find the image", nil)
             return
         }
-        
         
         DispatchQueue.main.async {
             //  set config
@@ -40,8 +42,13 @@ class PhotoEditor: NSObject {
         self.resolve = resolve;
         self.reject = reject;
         
-        ZLImageEditorConfiguration.default().imageStickerContainerView = StickerView()
+        // Stickers
+        let stickers = options["stickers"] as! [String]
+        ZLImageEditorConfiguration.default().imageStickerContainerView = StickerView(stickers: stickers)
+        //config
         ZLImageEditorConfiguration.default().editDoneBtnBgColor = UIColor(red:255/255.0, green:76/255.0, blue:41/255.0, alpha:1.0)
+        ZLImageEditorConfiguration.default().editImageTools = [.draw, .clip, .filter, .imageSticker, .textSticker]
+        
         do {
             let filters = ColorCubeLoader(bundle: .main)
             ZLImageEditorConfiguration.default().filters = try filters.load()
@@ -69,10 +76,25 @@ class PhotoEditor: NSObject {
     
     
     func getUIImage(path: String) -> UIImage?  {
-        let uri = path.replacingOccurrences(of: "file://", with: "")
-        let image: UIImage? = UIImage(contentsOfFile: uri)
-        return image
+        do{
+            //check remote url
+            if(path.contains("http")){
+                let remoteUrl = URL(string:path)
+                if let data = try? Data(contentsOf: remoteUrl!) {
+                    let remoteImage = UIImage(data: data)
+                    return remoteImage
+                } else{
+                    throw ImageLoad.failedToLoadImage("failed to load image")
+                }
+            }
+            let uri = path.replacingOccurrences(of: "file://", with: "")
+            let image: UIImage? = UIImage(contentsOfFile: uri)
+            return image
+        }catch{
+            return nil
+        }
     }
+    
 }
 
 extension UIApplication {
