@@ -645,10 +645,10 @@
     "@babel/helper-validator-identifier" "^7.14.8"
     to-fast-properties "^2.0.0"
 
-"@baronha/react-native-multiple-image-picker@^0.3.2":
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/@baronha/react-native-multiple-image-picker/-/react-native-multiple-image-picker-0.3.2.tgz#e2361873fc0f42172a20b08c3ab7e1b522633f66"
-  integrity sha512-52PetHbDbhU7Vgwz83S0XPdHAwuw+DD1Qdxe+89gjp8ShrSoGjC7PqPoumU7P8FL5nehNU1/MIob2XdppYExFw==
+"@baronha/react-native-multiple-image-picker@^0.4.6":
+  version "0.4.6"
+  resolved "https://registry.yarnpkg.com/@baronha/react-native-multiple-image-picker/-/react-native-multiple-image-picker-0.4.6.tgz#c3003cf8475bc8d6d4b643adff9e0627687e7713"
+  integrity sha512-Q//YK+li3Y5e2A6XeacPIWcOfu14Xs40Hm3SzmU42UxXbK2LYd2mK6B5zr9sMcFkqkFyNYulkcgy5vtxTZ297A==
 
 "@cnakazawa/watch@^1.0.3":
   version "1.0.4"

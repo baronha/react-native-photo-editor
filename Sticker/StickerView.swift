@@ -38,8 +38,8 @@ class StickerView: UIView, ZLImageStickerContainerDelegate {
         //  gesture
         let gesture = UIPanGestureRecognizer.init(target: self, action: #selector(hideBtnClick))
         gesture.delegate = self
-        
         self.baseView.addGestureRecognizer(gesture)
+        
         self.baseView.layer.mask = maskLayer
     }
     
@@ -111,15 +111,11 @@ class StickerView: UIView, ZLImageStickerContainerDelegate {
             make.left.right.bottom.equalTo(self.baseView)
         }
         
-        self.collectionView.register(ImageStickerCell.self, forCellWithReuseIdentifier: NSStringFromClass(ImageStickerCell.classForCoder()))
+        self.collectionView.register(StickerCell.self, forCellWithReuseIdentifier: NSStringFromClass(StickerCell.classForCoder()))
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(panGesture))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(hideBtnClick))
         tap.delegate = self
         self.addGestureRecognizer(tap)
-    }
-    
-    @objc func panGesture() {
-        self.hide()
     }
     
     @objc func hideBtnClick() {
@@ -175,11 +171,8 @@ extension StickerView: UIGestureRecognizerDelegate {
 extension StickerView: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let column: CGFloat = 4
+        let column: CGFloat = 5
         let spacing: CGFloat = 20 + 5 * (column - 1)
-        
-        print("spacing: ", spacing)
-        
         let w = (collectionView.frame.width - spacing) / column
         return CGSize(width: w, height: w)
     }
@@ -189,7 +182,7 @@ extension StickerView: UICollectionViewDataSource, UICollectionViewDelegateFlowL
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NSStringFromClass(ImageStickerCell.classForCoder()), for: indexPath) as! ImageStickerCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NSStringFromClass(StickerCell.classForCoder()), for: indexPath) as! StickerCell
         
         let item = self.datas[indexPath.row]
         
@@ -210,14 +203,10 @@ extension StickerView: UICollectionViewDataSource, UICollectionViewDelegateFlowL
     }
     
     func handleImageInCell(from urlString: String, completion: @escaping (UIImage) -> ()) {
-        
         if(urlString.contains("http")){
             let url = URL(string: urlString)
-            print("Download Started")
             getData(from: url!) { data, response, error in
                 guard let data = data, error == nil else { return }
-                print(response?.suggestedFilename ?? url?.lastPathComponent as Any)
-                print("Download Finished")
                 // always update the UI from the main thread
                 DispatchQueue.main.async() {
                     let image = UIImage(data: data)
@@ -236,28 +225,6 @@ extension StickerView: UICollectionViewDataSource, UICollectionViewDelegateFlowL
     //    func numberOfSections(in collectionView: UICollectionView) -> Int {
     //        return 2
     //    }
-    
-}
-
-
-class ImageStickerCell: UICollectionViewCell {
-    
-    var imageView: UIImageView!
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        self.imageView = UIImageView()
-        self.imageView.contentMode = .scaleAspectFit
-        self.contentView.addSubview(self.imageView)
-        self.imageView.snp.makeConstraints { (make) in
-            make.edges.equalTo(self.contentView)
-        }
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
 }
 

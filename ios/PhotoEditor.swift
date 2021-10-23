@@ -50,7 +50,7 @@ class PhotoEditor: NSObject {
         ZLImageEditorConfiguration.default().editImageTools = [.draw, .clip, .filter, .imageSticker, .textSticker]
         
         do {
-            let filters = ColorCubeLoader(bundle: .main)
+            let filters = ColorCubeLoader()
             ZLImageEditorConfiguration.default().filters = try filters.load()
         } catch {
             assertionFailure("\(error)")

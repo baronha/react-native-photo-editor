@@ -4,15 +4,11 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 platform :ios, '10.0'
 
 target 'PhotoEditorExample' do
-  use_modular_headers!
   config = use_native_modules!
 
   use_react_native!(:path => config["reactNativePath"])
 
   pod 'react-native-photo-editor', :path => '../..'
-  pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec', :modular_headers => false
-  pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec', :modular_headers => false
-  pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec', :modular_headers => false
 
   # Enables Flipper.
   #

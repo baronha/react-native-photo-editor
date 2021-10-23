@@ -8,12 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* PhotoEditorExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* PhotoEditorExampleTests.m */; };
-		0E1B0D3F26B813D9009F9BAC /* LUT_64_Bagan.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E1B0D3E26B813D9009F9BAC /* LUT_64_Bagan.png */; };
-		0E1B0D4326B816F5009F9BAC /* LUT_64_SaiGon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E1B0D4226B816F5009F9BAC /* LUT_64_SaiGon.png */; };
 		0E9EC48626B7D3EC0054EA0F /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9EC48426B7D3EC0054EA0F /* File.swift */; };
-		0EB632DF27231E2100FAB0CA /* LUT_64_California.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EB632DE27231E2100FAB0CA /* LUT_64_California.png */; };
 		0EB632E327231F9500FAB0CA /* Stickers.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0EB632E227231F9500FAB0CA /* Stickers.bundle */; };
-		0EFA4525271DD97B00D57BC1 /* LUT_64_Tokyo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EFA451C271DD97B00D57BC1 /* LUT_64_Tokyo.png */; };
+		0ED91DF927241C2B008678CD /* LUTs.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0ED91DF827241C2B008678CD /* LUTs.bundle */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -47,13 +44,10 @@
 		00E356EE1AD99517003FC87E /* PhotoEditorExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhotoEditorExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* PhotoEditorExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoEditorExampleTests.m; sourceTree = "<group>"; };
-		0E1B0D3E26B813D9009F9BAC /* LUT_64_Bagan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LUT_64_Bagan.png; sourceTree = "<group>"; };
-		0E1B0D4226B816F5009F9BAC /* LUT_64_SaiGon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LUT_64_SaiGon.png; sourceTree = "<group>"; };
 		0E9EC48426B7D3EC0054EA0F /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		0E9EC48526B7D3EC0054EA0F /* PhotoEditorExample-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PhotoEditorExample-Bridging-Header.h"; sourceTree = "<group>"; };
-		0EB632DE27231E2100FAB0CA /* LUT_64_California.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LUT_64_California.png; sourceTree = "<group>"; };
 		0EB632E227231F9500FAB0CA /* Stickers.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Stickers.bundle; sourceTree = "<group>"; };
-		0EFA451C271DD97B00D57BC1 /* LUT_64_Tokyo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LUT_64_Tokyo.png; sourceTree = "<group>"; };
+		0ED91DF827241C2B008678CD /* LUTs.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = LUTs.bundle; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* PhotoEditorExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoEditorExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = PhotoEditorExample/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = PhotoEditorExample/AppDelegate.m; sourceTree = "<group>"; };
@@ -120,17 +114,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		0E9EC4A726B7FAA00054EA0F /* LUTs */ = {
-			isa = PBXGroup;
-			children = (
-				0EFA451C271DD97B00D57BC1 /* LUT_64_Tokyo.png */,
-				0E1B0D4226B816F5009F9BAC /* LUT_64_SaiGon.png */,
-				0EB632DE27231E2100FAB0CA /* LUT_64_California.png */,
-				0E1B0D3E26B813D9009F9BAC /* LUT_64_Bagan.png */,
-			);
-			path = LUTs;
-			sourceTree = "<group>";
-		};
 		13B07FAE1A68108700A75B9A /* PhotoEditorExample */ = {
 			isa = PBXGroup;
 			children = (
@@ -174,8 +157,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				0ED91DF827241C2B008678CD /* LUTs.bundle */,
 				0EB632E227231F9500FAB0CA /* Stickers.bundle */,
-				0E9EC4A726B7FAA00054EA0F /* LUTs */,
 				0E9EC48426B7D3EC0054EA0F /* File.swift */,
 				0E9EC48526B7D3EC0054EA0F /* PhotoEditorExample-Bridging-Header.h */,
 				13B07FAE1A68108700A75B9A /* PhotoEditorExample */,
@@ -341,13 +324,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0ED91DF927241C2B008678CD /* LUTs.bundle in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
-				0E1B0D4326B816F5009F9BAC /* LUT_64_SaiGon.png in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				0E1B0D3F26B813D9009F9BAC /* LUT_64_Bagan.png in Resources */,
-				0EB632DF27231E2100FAB0CA /* LUT_64_California.png in Resources */,
 				0EB632E327231F9500FAB0CA /* Stickers.bundle in Resources */,
-				0EFA4525271DD97B00D57BC1 /* LUT_64_Tokyo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
