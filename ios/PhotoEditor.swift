@@ -45,10 +45,13 @@ class PhotoEditor: NSObject {
         // Stickers
         let stickers = options["stickers"] as! [String]
         ZLImageEditorConfiguration.default().imageStickerContainerView = StickerView(stickers: stickers)
-        //config
+        
+        
+        //Config
         ZLImageEditorConfiguration.default().editDoneBtnBgColor = UIColor(red:255/255.0, green:76/255.0, blue:41/255.0, alpha:1.0)
         ZLImageEditorConfiguration.default().editImageTools = [.draw, .clip, .filter, .imageSticker, .textSticker]
         
+        //Filters Lut
         do {
             let filters = ColorCubeLoader()
             ZLImageEditorConfiguration.default().filters = try filters.load()
@@ -59,6 +62,8 @@ class PhotoEditor: NSObject {
     
     private func presentController(image: UIImage) {
         if let controller = UIApplication.getTopViewController() {
+            controller.modalTransitionStyle = .crossDissolve
+            
             ZLEditImageViewController.showEditImageVC(parentVC:controller , image: image) { [weak self] (resImage, editModel) in
                 let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
                 

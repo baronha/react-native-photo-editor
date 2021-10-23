@@ -35,19 +35,8 @@ class StickerView: UIView, ZLImageStickerContainerDelegate {
         self.baseView.layer.mask = nil
         let maskLayer = CAShapeLayer()
         maskLayer.path = path.cgPath
-        //  gesture
-        let gesture = UIPanGestureRecognizer.init(target: self, action: #selector(hideBtnClick))
-        gesture.delegate = self
-        self.baseView.addGestureRecognizer(gesture)
         
         self.baseView.layer.mask = maskLayer
-    }
-    
-    func gesture(recognizer: UIPanGestureRecognizer) {
-        let translation = recognizer.translation(in: self.baseView)
-        let y = self.baseView.frame.minY
-        self.baseView.frame = CGRect(x: 0, y: y + translation.y, width: baseView.frame.width, height: baseView.frame.height)
-        recognizer.setTranslation(CGPoint.zero, in: self.baseView)
     }
     
     private func setupData(){
@@ -70,6 +59,7 @@ class StickerView: UIView, ZLImageStickerContainerDelegate {
             make.edges.equalTo(self.baseView)
         }
         
+        //set up toolView
         let toolView = UIView()
         toolView.backgroundColor = UIColor(white: 0.4, alpha: 0.4)
         self.baseView.addSubview(toolView)
@@ -78,22 +68,24 @@ class StickerView: UIView, ZLImageStickerContainerDelegate {
             make.height.equalTo(42)
         }
         
-        let hideBtn = UIButton(type: .custom)
-        //        hideBtn.setImage(UIImage(named: "close"), for: .normal)
-        hideBtn.backgroundColor = .clear
+        //setup knob view
+        let knob = UIView()
+        knob.backgroundColor = UIColor(white: 1, alpha: 0.6)
         
-        hideBtn.titleLabel?.text = "Close"
-        hideBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-        hideBtn.titleLabel?.textColor = UIColor.white
-        
-        hideBtn.addTarget(self, action: #selector(hideBtnClick), for: .touchUpInside)
-        
-        toolView.addSubview(hideBtn)
-        hideBtn.snp.makeConstraints { (make) in
-            make.centerY.equalTo(toolView)
-            make.right.equalTo(toolView).offset(-20)
-            make.size.equalTo(CGSize(width: 40, height: 40))
+        toolView.addSubview(knob)
+
+        knob.snp.makeConstraints { (make) in
+            make.center.equalToSuperview()
+            make.height.equalTo(6)
+            make.width.equalTo(64)
         }
+        
+        knob.layer.cornerRadius = 4
+        
+        //  gesture
+        let gesture = UIPanGestureRecognizer.init(target: self, action: #selector(panGestureRecognizerAction))
+        toolView.addGestureRecognizer(gesture)
+        
         
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -117,6 +109,34 @@ class StickerView: UIView, ZLImageStickerContainerDelegate {
         tap.delegate = self
         self.addGestureRecognizer(tap)
     }
+    
+//    func gesture(recognizer: UIPanGestureRecognizer) {
+//        let translation = recognizer.translation(in: self.baseView)
+//        let y = self.baseView.frame.minY
+//        self.baseView.frame = CGRect(x: 0, y: y + translation.y, width: baseView.frame.width, height: baseView.frame.height)
+//        recognizer.setTranslation(CGPoint.zero, in: self.baseView)
+//    }
+    
+    @objc func panGestureRecognizerAction(sender: UIPanGestureRecognizer) {
+        let translation = sender.translation(in: sender.view)
+        // Not allowing the user to drag the view upward
+        guard translation.y >= 0 else { return }
+        
+        let baseViewH = StickerView.baseViewH - 84
+        
+        self.baseView.frame.origin = CGPoint(x: 0, y: baseViewH + translation.y)
+          if sender.state == .ended {
+              let dragVelocity = sender.velocity(in: self.baseView)
+              if (dragVelocity.y >= baseViewH || translation.y > baseViewH / 2)  {
+                  hide()
+              } else {
+//                Set back to original position of the view controller
+                  UIView.animate(withDuration: 0.3) {
+                      self.baseView.frame.origin = CGPoint(x: 0, y: baseViewH)
+                  }
+              }
+          }
+      }
     
     @objc func hideBtnClick() {
         self.hide()
@@ -165,6 +185,7 @@ extension StickerView: UIGestureRecognizerDelegate {
         let location = gestureRecognizer.location(in: self)
         return !self.baseView.frame.contains(location)
     }
+    
 }
 
 
@@ -185,16 +206,15 @@ extension StickerView: UICollectionViewDataSource, UICollectionViewDelegateFlowL
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NSStringFromClass(StickerCell.classForCoder()), for: indexPath) as! StickerCell
         
         let item = self.datas[indexPath.row]
-        
         handleImageInCell(from: item) { image in
             cell.imageView.image = image
         }
-        
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         let item = self.datas[indexPath.row]
         handleImageInCell(from: item) { image in
             self.selectImageBlock?(image)
@@ -221,11 +241,7 @@ extension StickerView: UICollectionViewDataSource, UICollectionViewDelegateFlowL
     func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
         URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
     }
-    
-    //    func numberOfSections(in collectionView: UICollectionView) -> Int {
-    //        return 2
-    //    }
-    
+
 }
 
 extension FileManager {
