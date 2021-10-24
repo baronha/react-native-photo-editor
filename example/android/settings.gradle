@@ -2,5 +2,8 @@ rootProject.name = 'PhotoEditorExample'
 apply from: file("../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesSettingsGradle(settings)
 include ':app'
 
+include ':picture_library'
+project(':picture_library').projectDir = new File(rootProject.projectDir, '../node_modules/@baronha/react-native-multiple-image-picker/picture_library')
+
 include ':reactnativephotoeditor'
 project(':reactnativephotoeditor').projectDir = new File(rootProject.projectDir, '../../android')
