@@ -7,9 +7,8 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.graphics.Canvas
 import android.graphics.Typeface
-import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -19,7 +18,6 @@ import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import android.view.animation.AnticipateOvershootInterpolator
-import android.webkit.URLUtil
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.NonNull
@@ -35,7 +33,6 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.ChangeBounds
 import androidx.transition.TransitionManager
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.reactnativephotoeditor.R
 import com.reactnativephotoeditor.activity.EmojiBSFragment.EmojiListener
@@ -50,6 +47,7 @@ import ja.burhanrashid52.photoeditor.PhotoEditor.OnSaveListener
 import ja.burhanrashid52.photoeditor.shape.ShapeBuilder
 import ja.burhanrashid52.photoeditor.shape.ShapeType
 import java.io.File
+import java.io.InputStream
 
 
 open class PhotoEditorActivity : AppCompatActivity(), OnPhotoEditorListener, View.OnClickListener,
@@ -82,7 +80,12 @@ open class PhotoEditorActivity : AppCompatActivity(), OnPhotoEditorListener, Vie
     //intern
     val value = intent.extras
     val path = value?.getString("path")
-    val stickers = value?.getStringArrayList("stickers")
+    val stickers =
+      value?.getStringArrayList("stickers")?.plus(assets.list("Stickers")!!) as ArrayList<String>
+//    println("stickers: $stickers ${stickers.size}")
+//    for (stick in stickers) {
+//      print("stick: $stickers")
+//    }
 
     mPropertiesBSFragment = PropertiesBSFragment()
     mPropertiesBSFragment!!.setPropertiesChangeListener(this)
@@ -92,7 +95,10 @@ open class PhotoEditorActivity : AppCompatActivity(), OnPhotoEditorListener, Vie
 
     mStickerFragment = StickerFragment()
     mStickerFragment!!.setStickerListener(this)
-    mStickerFragment!!.setData(stickers!!)
+
+//    val stream: InputStream = assets.open("image.png")
+//    val d = Drawable.createFromStream(stream, null)
+    mStickerFragment!!.setData(stickers)
 
     mShapeBSFragment = ShapeBSFragment()
     mShapeBSFragment!!.setPropertiesChangeListener(this)

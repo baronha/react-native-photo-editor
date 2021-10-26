@@ -48,14 +48,14 @@ const App = () => {
   return (
     <SafeAreaView style={style.container}>
       <TouchableOpacity onPress={onEdit}>
-        {/* {photo?.path && (
+        {photo?.path && (
           <Image
             style={style.image}
             source={{
               uri: photo.path,
             }}
           />
-        )} */}
+        )}
         <Image
           style={style.image}
           source={{
