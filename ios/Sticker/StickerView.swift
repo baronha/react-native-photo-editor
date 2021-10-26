@@ -7,6 +7,7 @@
 
 import UIKit
 import ZLImageEditor
+import SDWebImage
 
 class StickerView: UIView, ZLImageStickerContainerDelegate {
     
@@ -40,8 +41,8 @@ class StickerView: UIView, ZLImageStickerContainerDelegate {
     }
     
     private func setupData(){
-        let fm = FileManager.default
-        datas = datas + fm.getListFileNameInBundle(bundlePath: "Stickers.bundle") 
+        let fileManager = FileManager.default
+        datas = datas + fileManager.getListFileNameInBundle(bundlePath: "Stickers.bundle")
     }
     
     func setupUI() {
@@ -222,19 +223,28 @@ extension StickerView: UICollectionViewDataSource, UICollectionViewDelegateFlowL
         }
     }
     
-    func handleImageInCell(from urlString: String, completion: @escaping (UIImage) -> ()) {
+    private func handleImageInCell(from urlString: String,completion:@escaping (UIImage) -> ()){
+        let url = URL(string: urlString)
         if(urlString.contains("http")){
-            let url = URL(string: urlString)
-            getData(from: url!) { data, response, error in
-                guard let data = data, error == nil else { return }
-                // always update the UI from the main thread
-                DispatchQueue.main.async() {
-                    let image = UIImage(data: data)
-                    completion(image!)
+            SDWebImageManager.shared.loadImage(with: url, options: .continueInBackground, progress: { (recieved, expected, nil) in
+            }, completed: { (downloadedImage, data, error, SDImageCacheType, true, imageUrlString) in
+                DispatchQueue.main.async {
+                    if(error != nil){
+                        print("error", error as Any)
+                        return;
+                    }
+                    if downloadedImage != nil{
+                        completion(downloadedImage!)
+                    }
                 }
-            }
+            })
         }else{
-            completion(UIImage(named: urlString)!)
+            do{
+                let data = try Data(contentsOf: url!)
+                completion(UIImage.sd_image(with: data)!)
+            }catch{
+                
+            }
         }
     }
     
@@ -245,14 +255,18 @@ extension StickerView: UICollectionViewDataSource, UICollectionViewDelegateFlowL
 }
 
 extension FileManager {
-    func getListFileNameInBundle(bundlePath: String) -> [String] {
+    func getListFileNameInBundle(bundlePath: String, parseName: Bool = false) -> [String] {
         
         let fileManager = FileManager.default
         let bundleURL = Bundle.main.bundleURL
         let assetURL = bundleURL.appendingPathComponent(bundlePath)
         do {
             let contents = try fileManager.contentsOfDirectory(at: assetURL, includingPropertiesForKeys: [URLResourceKey.nameKey, URLResourceKey.isDirectoryKey], options: .skipsHiddenFiles)
-            return contents.map{$0.lastPathComponent}
+            if(parseName){
+                return contents.map{$0.lastPathComponent}
+            }else{
+                return contents.map{$0.absoluteString}.sorted()
+            }
         }
         catch {
             return []

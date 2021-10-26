@@ -7,7 +7,9 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.graphics.Typeface
+import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -17,9 +19,11 @@ import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import android.view.animation.AnticipateOvershootInterpolator
+import android.webkit.URLUtil
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.NonNull
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -30,10 +34,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.ChangeBounds
 import androidx.transition.TransitionManager
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.reactnativephotoeditor.R
 import com.reactnativephotoeditor.activity.EmojiBSFragment.EmojiListener
-import com.reactnativephotoeditor.activity.StickerBSFragment.StickerListener
+import com.reactnativephotoeditor.activity.StickerFragment.StickerListener
 import com.reactnativephotoeditor.activity.filters.FilterListener
 import com.reactnativephotoeditor.activity.filters.FilterViewAdapter
 import com.reactnativephotoeditor.activity.tools.EditingToolsAdapter
@@ -46,7 +52,9 @@ import ja.burhanrashid52.photoeditor.shape.ShapeType
 import java.io.File
 
 
-open class PhotoEditorActivity : AppCompatActivity(), OnPhotoEditorListener, View.OnClickListener, PropertiesBSFragment.Properties, ShapeBSFragment.Properties, EmojiListener, StickerListener, OnItemSelected, FilterListener {
+open class PhotoEditorActivity : AppCompatActivity(), OnPhotoEditorListener, View.OnClickListener,
+  PropertiesBSFragment.Properties, ShapeBSFragment.Properties, EmojiListener, StickerListener,
+  OnItemSelected, FilterListener {
   private var mPhotoEditor: PhotoEditor? = null
   private var mProgressDialog: ProgressDialog? = null
   private var mPhotoEditorView: PhotoEditorView? = null
@@ -54,7 +62,7 @@ open class PhotoEditorActivity : AppCompatActivity(), OnPhotoEditorListener, Vie
   private var mShapeBSFragment: ShapeBSFragment? = null
   private var mShapeBuilder: ShapeBuilder? = null
   private var mEmojiBSFragment: EmojiBSFragment? = null
-  private var mStickerBSFragment: StickerBSFragment? = null
+  private var mStickerFragment: StickerFragment? = null
   private var mTxtCurrentTool: TextView? = null
   private var mRvTools: RecyclerView? = null
   private var mRvFilters: RecyclerView? = null
@@ -64,19 +72,27 @@ open class PhotoEditorActivity : AppCompatActivity(), OnPhotoEditorListener, Vie
   private val mConstraintSet = ConstraintSet()
   private var mIsFilterVisible = false
 
+  @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     makeFullScreen()
     setContentView(R.layout.photo_editor_view)
     initViews()
+
+    //intern
+    val value = intent.extras
+    val path = value?.getString("path")
+    val stickers = value?.getStringArrayList("stickers")
+
     mPropertiesBSFragment = PropertiesBSFragment()
     mPropertiesBSFragment!!.setPropertiesChangeListener(this)
 
     mEmojiBSFragment = EmojiBSFragment()
     mEmojiBSFragment!!.setEmojiListener(this)
 
-    mStickerBSFragment = StickerBSFragment()
-    mStickerBSFragment!!.setStickerListener(this)
+    mStickerFragment = StickerFragment()
+    mStickerFragment!!.setStickerListener(this)
+    mStickerFragment!!.setData(stickers!!)
 
     mShapeBSFragment = ShapeBSFragment()
     mShapeBSFragment!!.setPropertiesChangeListener(this)
@@ -95,14 +111,13 @@ open class PhotoEditorActivity : AppCompatActivity(), OnPhotoEditorListener, Vie
       .setPinchTextScalable(pinchTextScalable) // set flag to make text scalable when pinch
       .setDefaultEmojiTypeface(mEmojiTypeFace)
       .build() // build photo editor sdk
-
     mPhotoEditor?.setOnPhotoEditorListener(this)
-    //get image uri
-    val value = intent.extras
-    val path = value?.getString("path")
 
-    val uri = Uri.parse(path)
-    mPhotoEditorView!!.source.setImageURI(uri)
+    Glide
+      .with(this)
+      .load(path)
+//      .placeholder(drawable)
+      .into(mPhotoEditorView!!.source);
   }
 
   private fun showLoading(message: String) {
@@ -120,17 +135,22 @@ open class PhotoEditorActivity : AppCompatActivity(), OnPhotoEditorListener, Vie
   }
 
   private fun requestPermission(permission: String) {
-    val isGranted = ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED
+    val isGranted =
+      ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED
     if (!isGranted) {
       ActivityCompat.requestPermissions(
         this, arrayOf(permission),
-        READ_WRITE_STORAGE)
+        READ_WRITE_STORAGE
+      )
     }
   }
 
   private fun makeFullScreen() {
     requestWindowFeature(Window.FEATURE_NO_TITLE)
-    window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+    window.setFlags(
+      WindowManager.LayoutParams.FLAG_FULLSCREEN,
+      WindowManager.LayoutParams.FLAG_FULLSCREEN
+    )
   }
 
   private fun initViews() {
@@ -165,11 +185,17 @@ open class PhotoEditorActivity : AppCompatActivity(), OnPhotoEditorListener, Vie
   }
 
   override fun onAddViewListener(viewType: ViewType, numberOfAddedViews: Int) {
-    Log.d(TAG, "onAddViewListener() called with: viewType = [$viewType], numberOfAddedViews = [$numberOfAddedViews]")
+    Log.d(
+      TAG,
+      "onAddViewListener() called with: viewType = [$viewType], numberOfAddedViews = [$numberOfAddedViews]"
+    )
   }
 
   override fun onRemoveViewListener(viewType: ViewType, numberOfAddedViews: Int) {
-    Log.d(TAG, "onRemoveViewListener() called with: viewType = [$viewType], numberOfAddedViews = [$numberOfAddedViews]")
+    Log.d(
+      TAG,
+      "onRemoveViewListener() called with: viewType = [$viewType], numberOfAddedViews = [$numberOfAddedViews]"
+    )
   }
 
   override fun onStartViewChangeListener(viewType: ViewType) {
@@ -204,11 +230,15 @@ open class PhotoEditorActivity : AppCompatActivity(), OnPhotoEditorListener, Vie
 
   private fun saveImage() {
     val fileName = System.currentTimeMillis().toString() + ".png"
-    val hasStoragePermission = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
+    val hasStoragePermission = ContextCompat.checkSelfPermission(
+      this,
+      Manifest.permission.WRITE_EXTERNAL_STORAGE
+    ) == PackageManager.PERMISSION_GRANTED
     if (hasStoragePermission || isSdkHigherThan28()) {
       showLoading("Saving...")
       val path: File = Environment.getExternalStoragePublicDirectory(
-        Environment.DIRECTORY_PICTURES)
+        Environment.DIRECTORY_PICTURES
+      )
       val file = File(path, fileName)
       path.mkdirs()
 
@@ -305,7 +335,7 @@ open class PhotoEditorActivity : AppCompatActivity(), OnPhotoEditorListener, Vie
         showFilter(true)
       }
       ToolType.EMOJI -> showBottomSheetDialogFragment(mEmojiBSFragment)
-      ToolType.STICKER -> showBottomSheetDialogFragment(mStickerBSFragment)
+      ToolType.STICKER -> showBottomSheetDialogFragment(mStickerFragment)
     }
   }
 
@@ -321,13 +351,19 @@ open class PhotoEditorActivity : AppCompatActivity(), OnPhotoEditorListener, Vie
     mConstraintSet.clone(mRootView)
     if (isVisible) {
       mConstraintSet.clear(mRvFilters!!.id, ConstraintSet.START)
-      mConstraintSet.connect(mRvFilters!!.id, ConstraintSet.START,
-        ConstraintSet.PARENT_ID, ConstraintSet.START)
-      mConstraintSet.connect(mRvFilters!!.id, ConstraintSet.END,
-        ConstraintSet.PARENT_ID, ConstraintSet.END)
+      mConstraintSet.connect(
+        mRvFilters!!.id, ConstraintSet.START,
+        ConstraintSet.PARENT_ID, ConstraintSet.START
+      )
+      mConstraintSet.connect(
+        mRvFilters!!.id, ConstraintSet.END,
+        ConstraintSet.PARENT_ID, ConstraintSet.END
+      )
     } else {
-      mConstraintSet.connect(mRvFilters!!.id, ConstraintSet.START,
-        ConstraintSet.PARENT_ID, ConstraintSet.END)
+      mConstraintSet.connect(
+        mRvFilters!!.id, ConstraintSet.START,
+        ConstraintSet.PARENT_ID, ConstraintSet.END
+      )
       mConstraintSet.clear(mRvFilters!!.id, ConstraintSet.END)
     }
     val changeBounds = ChangeBounds()

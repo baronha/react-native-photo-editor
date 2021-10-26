@@ -53,7 +53,6 @@ public class StickerBSFragment extends BottomSheetDialogFragment {
         }
     };
 
-
     @SuppressLint("RestrictedApi")
     @Override
     public void setupDialog(@NotNull Dialog dialog, int style) {

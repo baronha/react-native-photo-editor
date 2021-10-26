@@ -17,7 +17,7 @@ public final class ColorCubeLoader {
 
     public func load() throws -> [ZLFilter] {
         let fileManager = FileManager.default
-        let fileList = fileManager.getListFileNameInBundle(bundlePath: "LUTs.bundle")
+        let fileList = fileManager.getListFileNameInBundle(bundlePath: "LUTs.bundle", parseName: true)
         
         func takeDimension(from string: String) -> Int? {
             enum Static {

@@ -10,6 +10,7 @@ class PhotoEditorModule(reactContext: ReactApplicationContext) : ReactContextBas
   private val context = reactApplicationContext;
   private val ACTIVITY_DOES_NOT_EXIST = "ACTIVITY_DOES_NOT_EXIST"
   private val REQUEST_CODE = 1
+  private val LOAD_IMAGE_FAILED = 2
   private var promise: Promise? = null
   override fun getName(): String {
     return "PhotoEditor"
@@ -23,10 +24,15 @@ class PhotoEditorModule(reactContext: ReactApplicationContext) : ReactContextBas
       promise.reject(ACTIVITY_DOES_NOT_EXIST, "Activity doesn't exist");
       return;
     }
-    val path = options?.getString("path")
     val intent = Intent(context, PhotoEditorActivity::class.java)
     context.addActivityEventListener(mActivityEventListener)
+
+    val path = options?.getString("path")
+    val stickers = options?.getArray("stickers") as ReadableArray
+
     intent.putExtra("path", path)
+    intent.putExtra("stickers", stickers.toArrayList())
+
     activity.startActivityForResult(intent, REQUEST_CODE)
   }
 
