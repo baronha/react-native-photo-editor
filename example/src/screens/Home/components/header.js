@@ -1,15 +1,19 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
-import images from '../../../assets/images';
+import { View, Text, StyleSheet } from 'react-native';
+
+import { Image } from '../../../components';
 import colors from '../../../themes/colors';
 import sizes from '../../../themes/sizes';
+
+const AVATAR_URL =
+  'https://raw.githubusercontent.com/baronha/react-native-photo-editor/dev/example/src/assets/images/david.png';
 
 const Header = () => {
   return (
     <View style={style.container}>
       <View style={style.avatarView}>
         <View style={style.overlayAvatar} />
-        <Image style={style.avatar} source={images.david} />
+        <Image style={style.avatar} url={AVATAR_URL} />
       </View>
       <View style={style.info}>
         <Text style={style.name}>Adam</Text>
@@ -29,7 +33,6 @@ const AVATAR_SIZE = sizes.width / 3;
 const style = StyleSheet.create({
   container: {
     padding: sizes.spaceMd,
-    paddingTop: 0,
     flexDirection: 'row',
     alignItems: 'center',
   },
