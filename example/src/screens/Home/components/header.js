@@ -16,8 +16,8 @@ const Header = () => {
         <Image style={style.avatar} url={AVATAR_URL} />
       </View>
       <View style={style.info}>
-        <Text style={style.name}>Adam</Text>
-        <Text style={style.userName}>@adamchimbe</Text>
+        <Text style={style.name}>David</Text>
+        <Text style={style.userName}>@davidchimbe</Text>
         <Text numberOfLines={2} style={style.description}>
           Mọi chuyện sẽ bớt quan trọng hơn khi bạn mắc ỉa. Ok nha fen tui!
         </Text>

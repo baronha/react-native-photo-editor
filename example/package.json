@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@baronha/react-native-multiple-image-picker": "^0.4.6",
+    "@react-native-seoul/masonry-list": "^1.1.1",
     "@react-navigation/native": "^6.0.6",
     "@react-navigation/native-stack": "^6.2.5",
     "react": "16.13.1",
