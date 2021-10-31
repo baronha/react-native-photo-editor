@@ -4,13 +4,15 @@ import android.app.Activity
 import android.content.Intent
 import com.facebook.react.bridge.*
 import com.reactnativephotoeditor.activity.PhotoEditorActivity
+import com.reactnativephotoeditor.activity.constant.ResponseCode
 
+enum class ERROR_CODE {
+
+}
 
 class PhotoEditorModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
   private val context = reactApplicationContext;
-  private val ACTIVITY_DOES_NOT_EXIST = "ACTIVITY_DOES_NOT_EXIST"
-  private val REQUEST_CODE = 1
-  private val LOAD_IMAGE_FAILED = 2
+  private val EDIT_SUCCESSFUL = 1
   private var promise: Promise? = null
   override fun getName(): String {
     return "PhotoEditor"
@@ -21,7 +23,7 @@ class PhotoEditorModule(reactContext: ReactApplicationContext) : ReactContextBas
     this.promise = promise
     val activity = currentActivity
     if (activity == null) {
-      promise.reject(ACTIVITY_DOES_NOT_EXIST, "Activity doesn't exist");
+      promise.reject("ACTIVITY_DOES_NOT_EXIST", "Activity doesn't exist");
       return;
     }
     val intent = Intent(context, PhotoEditorActivity::class.java)
@@ -33,20 +35,25 @@ class PhotoEditorModule(reactContext: ReactApplicationContext) : ReactContextBas
     intent.putExtra("path", path)
     intent.putExtra("stickers", stickers.toArrayList())
 
-    activity.startActivityForResult(intent, REQUEST_CODE)
+    activity.startActivityForResult(intent, EDIT_SUCCESSFUL)
   }
 
   private val mActivityEventListener: ActivityEventListener = object : BaseActivityEventListener() {
     override fun onActivityResult(activity: Activity, requestCode: Int, resultCode: Int, intent: Intent) {
-      if (requestCode == REQUEST_CODE) {
+      if (requestCode == EDIT_SUCCESSFUL) {
         when (resultCode) {
-          Activity.RESULT_OK -> {
+          ResponseCode.RESULT_OK -> {
             val path = intent.getStringExtra("path")
             promise?.resolve("file://$path")
           }
-          Activity.RESULT_CANCELED -> {
-            promise?.reject("User_Cancelled")
+          ResponseCode.RESULT_CANCELED -> {
+            promise?.reject("USER_CANCELLED", "User has cancelled", null)
           }
+          ResponseCode.LOAD_IMAGE_FAILED -> {
+            val path = intent.getStringExtra("path")
+            promise?.reject("LOAD_IMAGE_FAILED", "Load image failed: $path", null)
+          }
+
         }
       }
     }

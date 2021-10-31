@@ -2,15 +2,17 @@ package com.reactnativephotoeditor.activity
 
 import android.annotation.SuppressLint
 import android.app.Dialog
+import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.drawable.Drawable
+import android.os.Build
 import android.os.StrictMode
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.URLUtil
 import android.widget.ImageView
+import androidx.annotation.RequiresApi
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,8 +22,8 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCa
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.reactnativephotoeditor.R
 import java.io.InputStream
+import java.net.URI
 import java.net.URL
-
 
 class StickerFragment : BottomSheetDialogFragment() {
   private var mStickerListener: StickerListener? = null
@@ -54,7 +56,7 @@ class StickerFragment : BottomSheetDialogFragment() {
   @SuppressLint("RestrictedApi")
   override fun setupDialog(dialog: Dialog, style: Int) {
     super.setupDialog(dialog, style)
-    val contentView = View.inflate(context, R.layout.fragment_bottom_sticker_emoji_dialog, null)
+    val contentView = View.inflate(context, R.layout.fragment_bottom_sticker_dialog, null)
     dialog.setContentView(contentView)
     val params = (contentView.parent as View).layoutParams as CoordinatorLayout.LayoutParams
     val behavior = params.behavior
@@ -62,14 +64,14 @@ class StickerFragment : BottomSheetDialogFragment() {
       behavior.setBottomSheetCallback(mBottomSheetBehaviorCallback)
     }
     (contentView.parent as View).setBackgroundColor(resources.getColor(android.R.color.transparent))
-    val rvEmoji: RecyclerView = contentView.findViewById(R.id.rvEmoji)
+    val rvSticker: RecyclerView = contentView.findViewById(R.id.rvSticker)
     val gridLayoutManager = GridLayoutManager(
       activity, 5
     )
-    rvEmoji.layoutManager = gridLayoutManager
+    rvSticker.layoutManager = gridLayoutManager
     val stickerAdapter = StickerAdapter()
     stickerAdapter.stickerList = this.data
-    rvEmoji.adapter = stickerAdapter
+    rvSticker.adapter = stickerAdapter
   }
 
   inner class StickerAdapter :
@@ -80,34 +82,17 @@ class StickerFragment : BottomSheetDialogFragment() {
       return ViewHolder(view)
     }
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
       val item = stickerList[position]
       context?.let {
-        if (URLUtil.isValidUrl(item)) {
-          Glide
-            .with(it)
-            .load(item)
-            .centerCrop()
-            .placeholder(R.drawable.ic_sticker_placeholder)
-            .into(holder.imgSticker)
-
-        } else {
-//          val stream: InputStream = it.assets.open(item)
-//          val drawable = Drawable.createFromStream(stream, null)
-
-          val drawable =
-            resources.getIdentifier(item, "drawable", it.packageName)
-
-          holder.imgSticker.setImageResource(drawable)
-//          Glide.with(it)
-//            .load(drawable)
-//            .centerCrop()
-//            .placeholder(R.drawable.ic_sticker_placeholder)
-//            .into(holder.imgSticker)
-        }
+        Glide
+          .with(it)
+          .load(item)
+          .centerCrop()
+          .placeholder(R.drawable.ic_sticker_placeholder)
+          .into(holder.imgSticker)
       }
-
-
     }
 
     override fun getItemCount(): Int {
@@ -121,14 +106,38 @@ class StickerFragment : BottomSheetDialogFragment() {
         itemView.setOnClickListener {
           if (mStickerListener != null) {
             val url = stickerList[layoutPosition]
-            val bitmap = handleBitmapImage(url)
-            mStickerListener!!.onStickerClick(bitmap)
+
+            if (URLUtil.isValidUrl(url)) {
+              val bitmap = handleBitmapImage(url)
+              mStickerListener!!.onStickerClick(bitmap)
+            } else {
+              context?.let {
+                val stream = openInputStream(
+                  "file://$url",
+                  it
+                )
+
+                val bitmap = BitmapFactory.decodeStream(stream)
+                mStickerListener!!.onStickerClick(bitmap)
+              }
+            }
           }
           dismiss()
         }
       }
     }
 
+
+  }
+
+  private fun openInputStream(uriString: String?, context: Context): InputStream? {
+    val uri = URI.create(uriString)
+    return if (uri.scheme == "file" && uri.path.startsWith("/android_asset/")) {
+      val path = uri.path.replace("/android_asset/", "") // TODO: should be at start only
+      context.assets.open(path)
+    } else {
+      uri.toURL().openStream()
+    }
   }
 
   private fun handleBitmapImage(path: String): Bitmap {
@@ -136,11 +145,6 @@ class StickerFragment : BottomSheetDialogFragment() {
     val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
     StrictMode.setThreadPolicy(policy)
     return BitmapFactory.decodeStream(url.openConnection().getInputStream())
-//    if (URLUtil.isValidUrl(path)) {
-//
-//    } else {
-//      //
-//    }
   }
 
   private fun convertEmoji(emoji: String): String {

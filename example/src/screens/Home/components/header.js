@@ -1,9 +1,10 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Image as RNImage } from 'react-native';
 
 import { Image } from '../../../components';
 import colors from '../../../themes/colors';
 import sizes from '../../../themes/sizes';
+import images from '../../../assets/images';
 
 const AVATAR_URL =
   'https://raw.githubusercontent.com/baronha/react-native-photo-editor/dev/example/src/assets/images/david.png';
@@ -13,7 +14,7 @@ const Header = () => {
     <View style={style.container}>
       <View style={style.avatarView}>
         <View style={style.overlayAvatar} />
-        <Image style={style.avatar} url={AVATAR_URL} />
+        <RNImage style={style.avatar} source={images.david} />
       </View>
       <View style={style.info}>
         <Text style={style.name}>David</Text>

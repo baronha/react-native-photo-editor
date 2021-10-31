@@ -1,27 +1,21 @@
 /* eslint-disable react-native/no-inline-styles */
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { useCallback, useEffect, useState } from 'react';
-import {
-  View,
-  StyleSheet,
-  StatusBar,
-  ScrollView,
-  FlatList,
-} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, StyleSheet, StatusBar, Image as RNImage } from 'react-native';
 import MasonryList from '@react-native-seoul/masonry-list';
 
 import colors from '../../themes/colors';
 import sizes from '../../themes/sizes';
 import { Image } from '../../components';
+import images from '../../assets/images';
 
 import { Header, ButtonGroup } from './components';
 import { ActivityIndicator } from 'react-native';
 
-const cover =
-  'https://raw.githubusercontent.com/baronha/react-native-photo-editor/dev/example/src/assets/images/adam-creator.png';
+// const cover =
+//   'https://raw.githubusercontent.com/baronha/react-native-photo-editor/dev/example/src/assets/images/adam-creator.png';
 
-const unsplashApi =
-  'https://api.unsplash.com/collections/mBVp78Oe5kY/photos?per_page=100&client_id=JgOxefg8FPPlKNXCGLeawYcPc67V-C2PE6Z84tAjk_c';
+const clientId = 'JgOxefg8FPPlKNXCGLeawYcPc67V-C2PE6Z84tAjk_c';
+const unsplashApi = `https://api.unsplash.com/collections/mBVp78Oe5kY/photos?per_page=100&client_id=${clientId}`;
 
 const spacing = 4;
 
@@ -83,7 +77,7 @@ const Home = () => {
         keyExtractor={(item, index) => index.toString()}
         ListHeaderComponent={
           <>
-            <Image url={cover} style={style.cover} />
+            <RNImage source={images.adamCreator} style={style.cover} />
             <Header />
             <ButtonGroup />
           </>

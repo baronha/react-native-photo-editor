@@ -27,7 +27,7 @@ class PhotoEditor: NSObject {
         
         // handle path
         guard let path = options["path"], let image = self.getUIImage(path: path as! String) else {
-            reject("Dont_find_image", "Couldn't find the image", nil)
+            reject("DONT_FIND_IMAGE", "Couldn't find the image", nil)
             return
         }
         
