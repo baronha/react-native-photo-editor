@@ -67,7 +67,7 @@ const result = await PhotoEditor.open(Options);
 
 | Property |  Type  | Default value | Platform | Description      |
 | -------- | :----: | :-----------: | :------: | :--------------- |
-| uri      | string |   required    |   both   | Local image path |
+| path      | string |   required    |   both   | Local image path |
 
 ## Filters 🦋
 | iOS | Android |
