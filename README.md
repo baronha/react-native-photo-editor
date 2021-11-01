@@ -18,22 +18,18 @@ This lib is for personal use, so if you customize your style or change something
 
 ## Feature 🙈
 
-### iOS
-- [Wide color editing supported](https://instagram-engineering.com/bringing-wide-color-to-instagram-5a5481802d7d)
-- [Super large photo (12000px)](https://visibleearth.nasa.gov/img/temp.png) supported (But exporting takes so long time for now.)
-- Blazing fast previewing by Metal power.
-- Drawing supported - masking blurry
-- Creating your own filter with LUT
-
-### Android
-- Drawing on image with option to change its Brush's Color, Size, Opacity, Erasing and basic shapes.
-- Apply Filter Effect on image using MediaEffect
-- Adding/Editing **Text** with option to change its Color with Custom Fonts.
-- Adding **Emoji** with Custom Emoji Fonts.
+###  Both
+- Draw (Support custom line color).
+- Adding/Editing **Text** with option to change its Color.
 - Adding **Images/Stickers**
 - Pinch to Scale and Rotate views.
-- **Undo and Redo** for Brush and Views.
-- **Deleting** Views
+
+### iOS
+- Apply Filter Effect on image using [LUT Color](#custom-filtersios) (Custom filter is simpler than android)
+- Crop image.
+### Android
+- Drawing on image with option to change its Brush's Color, Size, Opacity, Erasing and basic shapes.
+- Apply Filter Effect on image using [MediaEffect](https://developer.android.com/reference/android/media/effect/EffectFactory). But in the future will change to LUT color.
 
 ## ScreenShot 👉👈
 
@@ -65,7 +61,8 @@ const result = await PhotoEditor.open(Options);
 
 | Property |  Type  | Default value | Platform | Description      |
 | -------- | :----: | :-----------: | :------: | :--------------- |
-| uri      | string |   required    |   both   | Local image path |
+| path      | string |   required    |   both   | Local/remote image path |
+| [stickers](#stickers)      | Array<String> |   []    |   both   | An array of paths containing sticker images |
 
 ## Filters 🦋
 | iOS | Android |
@@ -84,13 +81,30 @@ We can download the neutral LUT image from [lutCreator.js](https://sirserch.gith
 [Detailed documentations are available on here](https://www.notion.so/Creating-your-own-filters-LUT-d1942f2f5bcc44d88481d0a0cc4aacb3#d7bba7a891234ea48f1854b5e555366a)
 
 **IMPORTANT**
-You have to copy [this folder](https://github.com/baronha/react-native-photo-editor/tree/master/resources/LUTs) and paste in Xcode root folder
-[See Example](https://github.com/baronha/react-native-photo-editor/tree/master/example/ios)
+You have to create ```LUTs.bundle``` and add all your LUT Photo(Re-name your LUT Photo follow this format: [LUT_64_FILTER_NAME](https://github.com/baronha/react-native-photo-editor/tree/master/resources/LUTs.bundle)) into ```LUTs.bundle```. Then add ```LUTs.bundle``` into ```Copy Bundle Resources```. [See detail](https://github.com/baronha/react-native-photo-editor/tree/master/example/ios)
 
+## Stickers 🤌
+### Remote
+You need to pass an array of image urls to the sticker parameter in [options](#options)
+[Example](https://github.com/baronha/react-native-photo-editor/blob/dev/example/src/assets/data/stickers.json): 
+```
+[
+  "https://cdn-icons-png.flaticon.com/512/5272/5272912.png",
+  "https://cdn-icons-png.flaticon.com/512/5272/5272913.png",
+  "https://cdn-icons-png.flaticon.com/512/5272/5272916.png",
+  ...
+] 
+```
+### Local
+
+#### iOS
+You have to create ```Stickers.bundle``` and add all your sticker into ```Stickers.bundle```. Then add ```Stickers.bundle``` into ```Copy Bundle Resources```. [See detail](https://github.com/baronha/react-native-photo-editor/tree/master/example/ios)
+#### Android
+You have to create ```Stickers``` folder inside ```assets``` folder. Then drag or copy all sticker in to ```Sticker``` folder. [See detail](https://github.com/baronha/react-native-photo-editor/tree/master/example/android/app/src/main/assets/Stickers)
 ## To Do
 
-- [ ] Customize.
-- [ ] Sync between two platforms.
+- [ ] Lut Color in android.
+- [ ] Crop Image in android.
 
 ## Contributing
 
