@@ -14,15 +14,10 @@ public enum ColorCubeLoaderError: Error {
 ///
 /// `LUT_<Dimension>_<filterName>.<extension {jpg, png}>`
 public final class ColorCubeLoader {
-    public let bundle: Bundle
-    
-    public init(bundle: Bundle) {
-        self.bundle = bundle
-    }
-    
+
     public func load() throws -> [ZLFilter] {
-        let rootPath = bundle.bundlePath as NSString
-        let fileList = try FileManager.default.contentsOfDirectory(atPath: rootPath as String)
+        let fileManager = FileManager.default
+        let fileList = fileManager.getListFileNameInBundle(bundlePath: "LUTs.bundle", parseName: true)
         
         func takeDimension(from string: String) -> Int? {
             enum Static {
@@ -53,8 +48,8 @@ public final class ColorCubeLoader {
             .filter { $0.hasPrefix("LUT_") }
             .sorted()
             .map { path -> ZLFilter in
-                
-                let url = URL(fileURLWithPath: rootPath.appendingPathComponent(path))
+                let fileURL = Bundle.main.resourcePath! + "/LUTs.bundle/\(path)"
+                let url = URL(fileURLWithPath: fileURL)
                 
                 guard let dimension = takeDimension(from: path) else {
                     throw ColorCubeLoaderError.failedToGetDimensionFromFilename(path)

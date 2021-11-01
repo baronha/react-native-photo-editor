@@ -9,9 +9,16 @@
     "start": "react-native start"
   },
   "dependencies": {
-    "@baronha/react-native-multiple-image-picker": "^0.3.2",
+    "@baronha/react-native-multiple-image-picker": "^0.4.6",
+    "@react-native-seoul/masonry-list": "^1.1.1",
+    "@react-navigation/native": "^6.0.6",
+    "@react-navigation/native-stack": "^6.2.5",
     "react": "16.13.1",
-    "react-native": "0.63.4"
+    "react-native": "0.63.4",
+    "react-native-safe-area-context": "^3.3.2",
+    "react-native-screens": "^3.8.0",
+    "react-native-svg": "^12.1.0",
+    "react-native-svg-transformer": "^0.14.3"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",

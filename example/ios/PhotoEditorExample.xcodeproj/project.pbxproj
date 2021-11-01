@@ -8,21 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* PhotoEditorExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* PhotoEditorExampleTests.m */; };
-		0E1B0D3F26B813D9009F9BAC /* LUT_64_Bagan.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E1B0D3E26B813D9009F9BAC /* LUT_64_Bagan.png */; };
-		0E1B0D4126B8152E009F9BAC /* LUT_64_DaLat.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E1B0D4026B8152E009F9BAC /* LUT_64_DaLat.png */; };
-		0E1B0D4326B816F5009F9BAC /* LUT_64_SaiGon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E1B0D4226B816F5009F9BAC /* LUT_64_SaiGon.png */; };
-		0E1B0D5026B81D67009F9BAC /* LUT_64_California.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E1B0D4A26B81D67009F9BAC /* LUT_64_California.png */; };
 		0E9EC48626B7D3EC0054EA0F /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9EC48426B7D3EC0054EA0F /* File.swift */; };
-		0EA0FC2527207612008DAA00 /* Stickers in Resources */ = {isa = PBXBuildFile; fileRef = 0EA0FC2427207612008DAA00 /* Stickers */; };
-		0EFA451F271DD97B00D57BC1 /* LUT_64_Santorini.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EFA4516271DD97B00D57BC1 /* LUT_64_Santorini.png */; };
-		0EFA4520271DD97B00D57BC1 /* LUT_64_Rome.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EFA4517271DD97B00D57BC1 /* LUT_64_Rome.png */; };
-		0EFA4521271DD97B00D57BC1 /* LUT_64_L.A.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EFA4518271DD97B00D57BC1 /* LUT_64_L.A.png */; };
-		0EFA4522271DD97B00D57BC1 /* LUT_64_Osaka.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EFA4519271DD97B00D57BC1 /* LUT_64_Osaka.png */; };
-		0EFA4523271DD97B00D57BC1 /* LUT_64_Jeju.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EFA451A271DD97B00D57BC1 /* LUT_64_Jeju.png */; };
-		0EFA4524271DD97B00D57BC1 /* LUT_64_HongKong.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EFA451B271DD97B00D57BC1 /* LUT_64_HongKong.png */; };
-		0EFA4525271DD97B00D57BC1 /* LUT_64_Tokyo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EFA451C271DD97B00D57BC1 /* LUT_64_Tokyo.png */; };
-		0EFA4526271DD97B00D57BC1 /* LUT_64_Prague.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EFA451D271DD97B00D57BC1 /* LUT_64_Prague.png */; };
-		0EFA4527271DD97B00D57BC1 /* LUT_64_Paris.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EFA451E271DD97B00D57BC1 /* LUT_64_Paris.png */; };
+		0ED91DF927241C2B008678CD /* LUTs.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0ED91DF827241C2B008678CD /* LUTs.bundle */; };
+		0EDB89242727E43000FF4F9C /* Stickers.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0EDB89232727E43000FF4F9C /* Stickers.bundle */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -30,8 +18,8 @@
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* PhotoEditorExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* PhotoEditorExampleTests.m */; };
-		4C39C56BAD484C67AA576FFA /* libPods-PhotoEditorExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA3E69C5B9553B26FBA2DF04 /* libPods-PhotoEditorExample.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		B44817549F6874D4B821CB03 /* Pods_PhotoEditorExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AD4EF2BB1BEB934D4838304 /* Pods_PhotoEditorExample.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,22 +44,10 @@
 		00E356EE1AD99517003FC87E /* PhotoEditorExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhotoEditorExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* PhotoEditorExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoEditorExampleTests.m; sourceTree = "<group>"; };
-		0E1B0D3E26B813D9009F9BAC /* LUT_64_Bagan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LUT_64_Bagan.png; sourceTree = "<group>"; };
-		0E1B0D4026B8152E009F9BAC /* LUT_64_DaLat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LUT_64_DaLat.png; sourceTree = "<group>"; };
-		0E1B0D4226B816F5009F9BAC /* LUT_64_SaiGon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LUT_64_SaiGon.png; sourceTree = "<group>"; };
-		0E1B0D4A26B81D67009F9BAC /* LUT_64_California.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LUT_64_California.png; sourceTree = "<group>"; };
 		0E9EC48426B7D3EC0054EA0F /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		0E9EC48526B7D3EC0054EA0F /* PhotoEditorExample-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PhotoEditorExample-Bridging-Header.h"; sourceTree = "<group>"; };
-		0EA0FC2427207612008DAA00 /* Stickers */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Stickers; sourceTree = "<group>"; };
-		0EFA4516271DD97B00D57BC1 /* LUT_64_Santorini.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LUT_64_Santorini.png; sourceTree = "<group>"; };
-		0EFA4517271DD97B00D57BC1 /* LUT_64_Rome.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LUT_64_Rome.png; sourceTree = "<group>"; };
-		0EFA4518271DD97B00D57BC1 /* LUT_64_L.A.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LUT_64_L.A.png; sourceTree = "<group>"; };
-		0EFA4519271DD97B00D57BC1 /* LUT_64_Osaka.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LUT_64_Osaka.png; sourceTree = "<group>"; };
-		0EFA451A271DD97B00D57BC1 /* LUT_64_Jeju.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LUT_64_Jeju.png; sourceTree = "<group>"; };
-		0EFA451B271DD97B00D57BC1 /* LUT_64_HongKong.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LUT_64_HongKong.png; sourceTree = "<group>"; };
-		0EFA451C271DD97B00D57BC1 /* LUT_64_Tokyo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LUT_64_Tokyo.png; sourceTree = "<group>"; };
-		0EFA451D271DD97B00D57BC1 /* LUT_64_Prague.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LUT_64_Prague.png; sourceTree = "<group>"; };
-		0EFA451E271DD97B00D57BC1 /* LUT_64_Paris.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LUT_64_Paris.png; sourceTree = "<group>"; };
+		0ED91DF827241C2B008678CD /* LUTs.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = LUTs.bundle; sourceTree = "<group>"; };
+		0EDB89232727E43000FF4F9C /* Stickers.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Stickers.bundle; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* PhotoEditorExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoEditorExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = PhotoEditorExample/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = PhotoEditorExample/AppDelegate.m; sourceTree = "<group>"; };
@@ -80,9 +56,9 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = PhotoEditorExample/main.m; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* PhotoEditorExample-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PhotoEditorExample-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* PhotoEditorExample-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PhotoEditorExample-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3AD4EF2BB1BEB934D4838304 /* Pods_PhotoEditorExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PhotoEditorExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		47F7ED3B7971BE374F7B8635 /* Pods-PhotoEditorExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoEditorExample.debug.xcconfig"; path = "Target Support Files/Pods-PhotoEditorExample/Pods-PhotoEditorExample.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = PhotoEditorExample/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		CA3E69C5B9553B26FBA2DF04 /* libPods-PhotoEditorExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PhotoEditorExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E00ACF0FDA8BF921659E2F9A /* Pods-PhotoEditorExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoEditorExample.release.xcconfig"; path = "Target Support Files/Pods-PhotoEditorExample/Pods-PhotoEditorExample.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
@@ -100,7 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C39C56BAD484C67AA576FFA /* libPods-PhotoEditorExample.a in Frameworks */,
+				B44817549F6874D4B821CB03 /* Pods_PhotoEditorExample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,26 +114,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		0E9EC4A726B7FAA00054EA0F /* LUTs */ = {
-			isa = PBXGroup;
-			children = (
-				0EFA451B271DD97B00D57BC1 /* LUT_64_HongKong.png */,
-				0EFA451A271DD97B00D57BC1 /* LUT_64_Jeju.png */,
-				0EFA4518271DD97B00D57BC1 /* LUT_64_L.A.png */,
-				0EFA4519271DD97B00D57BC1 /* LUT_64_Osaka.png */,
-				0EFA451E271DD97B00D57BC1 /* LUT_64_Paris.png */,
-				0EFA451D271DD97B00D57BC1 /* LUT_64_Prague.png */,
-				0EFA4517271DD97B00D57BC1 /* LUT_64_Rome.png */,
-				0EFA4516271DD97B00D57BC1 /* LUT_64_Santorini.png */,
-				0EFA451C271DD97B00D57BC1 /* LUT_64_Tokyo.png */,
-				0E1B0D4A26B81D67009F9BAC /* LUT_64_California.png */,
-				0E1B0D4226B816F5009F9BAC /* LUT_64_SaiGon.png */,
-				0E1B0D4026B8152E009F9BAC /* LUT_64_DaLat.png */,
-				0E1B0D3E26B813D9009F9BAC /* LUT_64_Bagan.png */,
-			);
-			path = LUTs;
-			sourceTree = "<group>";
-		};
 		13B07FAE1A68108700A75B9A /* PhotoEditorExample */ = {
 			isa = PBXGroup;
 			children = (
@@ -177,7 +133,7 @@
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				CA3E69C5B9553B26FBA2DF04 /* libPods-PhotoEditorExample.a */,
+				3AD4EF2BB1BEB934D4838304 /* Pods_PhotoEditorExample.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -201,8 +157,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				0EA0FC2427207612008DAA00 /* Stickers */,
-				0E9EC4A726B7FAA00054EA0F /* LUTs */,
+				0EDB89232727E43000FF4F9C /* Stickers.bundle */,
+				0ED91DF827241C2B008678CD /* LUTs.bundle */,
 				0E9EC48426B7D3EC0054EA0F /* File.swift */,
 				0E9EC48526B7D3EC0054EA0F /* PhotoEditorExample-Bridging-Header.h */,
 				13B07FAE1A68108700A75B9A /* PhotoEditorExample */,
@@ -259,7 +215,7 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				C1D60D28B925C94BD88E79D7 /* [CP] Copy Pods Resources */,
+				9B9E8F3CF2FF073E8ED7AD5F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -368,22 +324,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0EA0FC2527207612008DAA00 /* Stickers in Resources */,
+				0EDB89242727E43000FF4F9C /* Stickers.bundle in Resources */,
+				0ED91DF927241C2B008678CD /* LUTs.bundle in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
-				0E1B0D4326B816F5009F9BAC /* LUT_64_SaiGon.png in Resources */,
-				0EFA4520271DD97B00D57BC1 /* LUT_64_Rome.png in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				0E1B0D3F26B813D9009F9BAC /* LUT_64_Bagan.png in Resources */,
-				0EFA4522271DD97B00D57BC1 /* LUT_64_Osaka.png in Resources */,
-				0EFA4527271DD97B00D57BC1 /* LUT_64_Paris.png in Resources */,
-				0E1B0D4126B8152E009F9BAC /* LUT_64_DaLat.png in Resources */,
-				0EFA4523271DD97B00D57BC1 /* LUT_64_Jeju.png in Resources */,
-				0EFA451F271DD97B00D57BC1 /* LUT_64_Santorini.png in Resources */,
-				0EFA4526271DD97B00D57BC1 /* LUT_64_Prague.png in Resources */,
-				0E1B0D5026B81D67009F9BAC /* LUT_64_California.png in Resources */,
-				0EFA4524271DD97B00D57BC1 /* LUT_64_HongKong.png in Resources */,
-				0EFA4525271DD97B00D57BC1 /* LUT_64_Tokyo.png in Resources */,
-				0EFA4521271DD97B00D57BC1 /* LUT_64_L.A.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -455,7 +399,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C1D60D28B925C94BD88E79D7 /* [CP] Copy Pods Resources */ = {
+		9B9E8F3CF2FF073E8ED7AD5F /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -626,6 +570,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = MH67NQJ66H;
 				ENABLE_BITCODE = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+				);
 				INFOPLIST_FILE = PhotoEditorExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

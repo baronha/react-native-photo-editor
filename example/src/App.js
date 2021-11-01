@@ -14,6 +14,8 @@ const { width } = Dimensions.get('window');
 
 const App = () => {
   const [photo, setPhoto] = useState({});
+  const remoteURL =
+    'https://images.unsplash.com/photo-1634915728822-5ad85582837a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=774&q=80';
 
   const openPicker = () => {
     ImagePicker.openPicker({ singleSelectedMode: true })
@@ -29,8 +31,9 @@ const App = () => {
   const onEdit = async () => {
     try {
       const path = await PhotoEditor.open({
-        // path: 'https://images.unsplash.com/photo-1627532383712-981b37b4085c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
-        path: photo.path,
+        path: remoteURL,
+        // path: photo.path,
+        stickers,
       });
       setPhoto({
         ...photo,
@@ -53,10 +56,16 @@ const App = () => {
             }}
           />
         )}
+        <Image
+          style={style.image}
+          source={{
+            uri: remoteURL,
+          }}
+        />
       </TouchableOpacity>
-      <TouchableOpacity style={style.openPicker} onPress={openPicker}>
+      {/* <TouchableOpacity style={style.openPicker} onPress={openPicker}>
         <Text style={style.titleOpen}>Open Picker</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </SafeAreaView>
   );
 };
@@ -81,3 +90,5 @@ const style = StyleSheet.create({
     padding: 12,
   },
 });
+
+const stickers = [];
