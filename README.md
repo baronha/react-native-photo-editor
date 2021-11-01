@@ -68,7 +68,7 @@ const result = await PhotoEditor.open(Options);
 | path      | string |   required    |   both   | Local/remote image path |
 | [stickers](#stickers)      | Array<String> |   []    |   both   | An array of paths containing sticker images |
 
-## Filters 🦋
+## Filters 🌈
 | iOS | Android |
 | :---------------------------------: | :-------------------------------------: |
 | ![](resources/filters_ios.png) | ![](resources/filters_android.png) |
@@ -102,9 +102,13 @@ You need to pass an array of image urls to the sticker parameter in [options](#o
 ### Local
 
 #### iOS
-You have to create ```Stickers.bundle``` and add all your sticker into ```Stickers.bundle```. Then add ```Stickers.bundle``` into ```Copy Bundle Resources```. [See detail](https://github.com/baronha/react-native-photo-editor/tree/master/example/ios)
+You have to create ```Stickers.bundle``` and add all your sticker into ```Stickers.bundle```. Then add ```Stickers.bundle``` into ```Copy Bundle Resources```.
+[See detail](https://github.com/baronha/react-native-photo-editor/tree/master/example/ios)
+![](resources/sticker_ios.png.png)
+  
 #### Android
 You have to create ```Stickers``` folder inside ```assets``` folder. Then drag or copy all sticker in to ```Sticker``` folder. [See detail](https://github.com/baronha/react-native-photo-editor/tree/master/example/android/app/src/main/assets/Stickers)
+![](resources/sticker_android.png.png)
 ## To Do
 
 - [ ] Lut Color in android.
