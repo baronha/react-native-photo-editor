@@ -52,6 +52,8 @@ This lib is for personal use, so if you customize your style or change something
 yarn add @baronha/react-native-photo-editor && cd ios/ && pod install && cd..
 ```
 
+> Don't forget add file [.swift](https://stackoverflow.com/questions/52536380/why-linker-link-static-libraries-with-errors-ios) in your project (and create bridging header file swift).
+
 ## Usage
 
 ```js
@@ -65,7 +67,7 @@ const result = await PhotoEditor.open(Options);
 
 | Property |  Type  | Default value | Platform | Description      |
 | -------- | :----: | :-----------: | :------: | :--------------- |
-| uri      | string |   required    |   both   | Local image path |
+| path      | string |   required    |   both   | Local image path |
 
 ## Filters 🦋
 | iOS | Android |
@@ -91,6 +93,11 @@ You have to copy [this folder](https://github.com/baronha/react-native-photo-edi
 
 - [ ] Customize.
 - [ ] Sync between two platforms.
+
+## Performance
+
+We're trying to improve performance. If you have a better solution, please open a [issue](https://github.com/baronha/react-native-photo-editor/issues)
+or [pull request](https://github.com/baronha/react-native-photo-editor/pulls). Best regards!
 
 ## Contributing
 
