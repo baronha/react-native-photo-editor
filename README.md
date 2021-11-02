@@ -11,7 +11,7 @@
 <br/>
 This lib is for personal use, so if you customize your style or change something, Please fork this library and check the detailed documentation in the original library:
 
-- [iOS](https://github.com/muukii/ZLImageEditor)
+- [iOS](https://github.com/longitachi/ZLImageEditor)
 - [Android](https://github.com/burhanrashid52/PhotoEditor)
 
 > During the development of this package. I was thinking of moving it as part of [an earlier library](https://github.com/baronha/react-native-multiple-image-picker) that I finished. If the support community for this library was large enough, I would have to dismiss this idea immediately.
@@ -41,14 +41,20 @@ This lib is for personal use, so if you customize your style or change something
 
 ## Requirements
 
-* Swift 5.3 (Xcode12.4+)
+* Swift 5.1+ (Xcode12.4+)
 * iOS 12+
 
 ## Installation
 
 ```sh
-yarn add @baronha/react-native-photo-editor && cd ios/ && pod install && cd..
+yarn add @baronha/react-native-photo-editor
 ```
+
+### iOS
+add ```use_frameworks! :linkage => :static``` in Podfile (Because this lib using SDWebImage for the purpose of loading images and stickers). 
+<br>
+Then run ```cd ios/ && pod install```
+
 
 > Don't forget add file [.swift](https://stackoverflow.com/questions/52536380/why-linker-link-static-libraries-with-errors-ios) in your project (and create bridging header file swift).
 
@@ -103,12 +109,17 @@ You need to pass an array of image urls to the sticker parameter in [options](#o
 
 #### iOS
 You have to create ```Stickers.bundle``` and add all your sticker into ```Stickers.bundle```. Then add ```Stickers.bundle``` into ```Copy Bundle Resources```.
-[See detail](https://github.com/baronha/react-native-photo-editor/tree/master/example/ios)
-![](resources/sticker_ios.png.png)
+  [See detail](https://github.com/baronha/react-native-photo-editor/tree/master/example/ios)
+    <br>
+    <br>
+![](resources/sticker_tutorial_ios.png)
   
 #### Android
-You have to create ```Stickers``` folder inside ```assets``` folder. Then drag or copy all sticker in to ```Sticker``` folder. [See detail](https://github.com/baronha/react-native-photo-editor/tree/master/example/android/app/src/main/assets/Stickers)
-![](resources/sticker_android.png.png)
+You have to create ```Stickers``` folder inside ```assets``` folder. Then drag or copy all sticker in to ```Sticker``` folder. 
+  [See detail](https://github.com/baronha/react-native-photo-editor/tree/master/example/android/app/src/main/assets/Stickers)
+  <br>
+   <br>
+  ![](resources/sticker_tutorial_android.png)
 ## To Do
 
 - [ ] Lut Color in android.
