@@ -33,11 +33,9 @@ This lib is for personal use, so if you customize your style or change something
 - Drawing on image with option to change its Brush's Color, Size, Opacity, Erasing and basic shapes.
 - Apply Filter Effect on image using [MediaEffect](https://developer.android.com/reference/android/media/effect/EffectFactory). But in the future will change to LUT color.
 
-## ScreenShot 👉👈
-
-
 https://user-images.githubusercontent.com/23580920/139821324-386a08ae-4adf-4d8a-a382-352cdff6ae1c.mp4
 
+## ScreenShot 👉👈
 
 | iOS | Android |
 | :---------------------------------: | :-------------------------------------: |
