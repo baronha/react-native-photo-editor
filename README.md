@@ -35,6 +35,10 @@ This lib is for personal use, so if you customize your style or change something
 
 ## ScreenShot 👉👈
 
+
+https://user-images.githubusercontent.com/23580920/139821324-386a08ae-4adf-4d8a-a382-352cdff6ae1c.mp4
+
+
 | iOS | Android |
 | :---------------------------------: | :-------------------------------------: |
 | ![](resources/tools_ios.png) | ![](resources/tools_android.png) |
