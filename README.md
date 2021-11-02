@@ -74,7 +74,7 @@ const result = await PhotoEditor.open(Options);
 | Property |  Type  | Default value | Platform | Description      |
 | -------- | :----: | :-----------: | :------: | :--------------- |
 | path      | string |   required    |   both   | Local/remote image path |
-| [stickers](#stickers)      | Array<String> |   []    |   both   | An array of paths containing sticker images |
+| [stickers](#stickers-)      | Array<String> |   []    |   both   | An array of paths containing sticker images |
 
 ## Filters 🌈
 | iOS | Android |
