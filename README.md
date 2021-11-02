@@ -3,7 +3,7 @@
 🌄 Image editor using native modules for iOS and Android. Inherit from 2 available libraries, [ZLImageEditor](https://github.com/longitachi/ZLImageEditor) (iOS) and [PhotoEditor](https://github.com/burhanrashid52/PhotoEditor) (Android)
 
 <p align="center">
-  <img src="./resources/banner.png" width="100%">
+  <img src="./resources/banner1.jpg" width="100%">
 </p>
 
 # Note
@@ -33,13 +33,28 @@ This lib is for personal use, so if you customize your style or change something
 - Drawing on image with option to change its Brush's Color, Size, Opacity, Erasing and basic shapes.
 - Apply Filter Effect on image using [MediaEffect](https://developer.android.com/reference/android/media/effect/EffectFactory). But in the future will change to LUT color.
 
-https://user-images.githubusercontent.com/23580920/139821324-386a08ae-4adf-4d8a-a382-352cdff6ae1c.mp4
+## Video Demo 📺
+| iOS |  Android  |
+| -------- | :----: |
+| <video src="https://user-images.githubusercontent.com/23580920/139821324-386a08ae-4adf-4d8a-a382-352cdff6ae1c.mp4" /> | <video src="https://user-images.githubusercontent.com/23580920/139927272-72e43ced-6690-4c52-a650-9169ee371cb0.mov" /> |
 
 ## ScreenShot 👉👈
+### iOS
+<div style="display: flex; flex-direction: row">
+  <img src="resources/tools_ios.png" width="33%">
+  <img src="resources/filters_ios.png" width="33%">
+  <img src="resources/sticker_ios.png" width="33%">
+</div>
 
-| iOS | Android |
-| :---------------------------------: | :-------------------------------------: |
-| ![](resources/tools_ios.png) | ![](resources/tools_android.png) |
+<br>
+
+### Android
+
+<div style="display: flex; flex-direction: row">
+  <img src="resources/tools_android.png" width="33%">
+  <img src="resources/filters_android.png" width="33%">
+  <img src="resources/sticker_android.png" width="33%">
+</div>
 
 ## Requirements
 
@@ -79,7 +94,7 @@ const result = await PhotoEditor.open(Options);
 ## Filters 🌈
 | iOS | Android |
 | :---------------------------------: | :-------------------------------------: |
-| ![](resources/filters_ios.png) | ![](resources/filters_android.png) |
+| ![](resources/filters_ios.png) | <img src="resources/filters_android.png" width="87.5%" /> |
 
 ### Custom Filters(iOS)
 #### LUT (Hald image)
