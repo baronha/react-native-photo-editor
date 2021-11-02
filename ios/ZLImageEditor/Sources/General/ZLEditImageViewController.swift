@@ -283,7 +283,9 @@ public class ZLEditImageViewController: UIViewController {
         self.drawColorCollectionView.frame = CGRect(x: 20, y: 20, width: self.view.frame.width - 80, height: 50)
         self.revokeBtn.frame = CGRect(x: self.view.frame.width - 15 - 35, y: 30, width: 35, height: 30)
         
-        self.filterCollectionView.frame = CGRect(x: 20, y: 0, width: self.view.frame.width-40, height: ZLEditImageViewController.filterColViewH)
+        self.filterCollectionView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: ZLEditImageViewController.filterColViewH)
+        
+        self.filterCollectionView.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         
         let toolY: CGFloat = 85
         
