@@ -199,9 +199,13 @@ PODS:
     - TLPhotoPicker (= 2.1.4)
   - react-native-photo-editor (1.0.0):
     - React-Core
+    - react-native-photo-editor/ZLImageEditor (= 1.0.0)
     - SDWebImage (~> 5.11.1)
     - SDWebImageWebPCoder (~> 0.8.4)
-    - ZLImageEditor (= 1.0.3)
+  - react-native-photo-editor/ZLImageEditor (1.0.0):
+    - React-Core
+    - SDWebImage (~> 5.11.1)
+    - SDWebImageWebPCoder (~> 0.8.4)
   - react-native-safe-area-context (3.3.2):
     - React-Core
   - React-RCTActionSheet (0.63.4):
@@ -277,9 +281,6 @@ PODS:
     - SDWebImage/Core (~> 5.10)
   - TLPhotoPicker (2.1.4)
   - Yoga (1.14.0)
-  - ZLImageEditor (1.0.3):
-    - ZLImageEditor/Core (= 1.0.3)
-  - ZLImageEditor/Core (1.0.3)
 
 DEPENDENCIES:
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
@@ -323,7 +324,6 @@ SPEC REPOS:
     - SDWebImage
     - SDWebImageWebPCoder
     - TLPhotoPicker
-    - ZLImageEditor
 
 EXTERNAL SOURCES:
   DoubleConversion:
@@ -408,7 +408,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: 93bd528844ad21dc07aab1c67cb10abae6df6949
   React-jsinspector: 58aef7155bc9a9683f5b60b35eccea8722a4f53a
   react-native-multiple-image-picker: 516d520a1672ff8177c2cd8a113553cbbe2939e9
-  react-native-photo-editor: e55c43671496432dab5a09291203b356918601c5
+  react-native-photo-editor: 7d1437ee2f62c9a214d2007d39c91fdb8b678714
   react-native-safe-area-context: 584dc04881deb49474363f3be89e4ca0e854c057
   React-RCTActionSheet: 89a0ca9f4a06c1f93c26067af074ccdce0f40336
   React-RCTAnimation: 1bde3ecc0c104c55df246eda516e0deb03c4e49b
@@ -426,7 +426,6 @@ SPEC CHECKSUMS:
   SDWebImageWebPCoder: f93010f3f6c031e2f8fb3081ca4ee6966c539815
   TLPhotoPicker: f486e8499e1c3f464d0e886697635e25a72a52b8
   Yoga: 4bd86afe9883422a7c4028c00e34790f560923d6
-  ZLImageEditor: 8e673e97937ede26ebdcc95f4b0fd1e34b587aaf
 
 PODFILE CHECKSUM: 81e1153b8551eb36806e3294953dd7b0cf26164e
 

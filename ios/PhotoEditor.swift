@@ -8,7 +8,9 @@
 import Foundation
 import UIKit
 import Photos
-import ZLImageEditor
+import SDWebImage
+import AVFoundation
+//import ZLImageEditor
 
 public enum ImageLoad: Error {
     case failedToLoadImage(String)
@@ -26,15 +28,19 @@ class PhotoEditor: NSObject {
     func open(options: NSDictionary, resolve:@escaping RCTPromiseResolveBlock,reject:@escaping RCTPromiseRejectBlock) -> Void {
         
         // handle path
-        guard let path = options["path"], let image = self.getUIImage(path: path as! String) else {
-            reject("DONT_FIND_IMAGE", "Couldn't find the image", nil)
-            return
+        guard let path = options["path"] as? String else {
+            reject("DONT_FIND_IMAGE", "Dont find image", nil)
+            return;
         }
         
-        DispatchQueue.main.async {
-            //  set config
-            self.setConfiguration(options: options, resolve: resolve, reject: reject)
-            self.presentController(image: image)
+        getUIImage(url: path) { image in
+            DispatchQueue.main.async {
+                //  set config
+                self.setConfiguration(options: options, resolve: resolve, reject: reject)
+                self.presentController(image: image)
+            }
+        } reject: {_ in
+            reject("LOAD_IMAGE_FAILED", "Load image failed: " + path, nil)
         }
     }
     
@@ -48,7 +54,8 @@ class PhotoEditor: NSObject {
         
         
         //Config
-        ZLImageEditorConfiguration.default().editDoneBtnBgColor = UIColor(red:255/255.0, green:76/255.0, blue:41/255.0, alpha:1.0)
+        ZLImageEditorConfiguration.default().editDoneBtnBgColor = UIColor(red:255/255.0, green:238/255.0, blue:101/255.0, alpha:1.0)
+
         ZLImageEditorConfiguration.default().editImageTools = [.draw, .clip, .filter, .imageSticker, .textSticker]
         
         //Filters Lut
@@ -80,24 +87,21 @@ class PhotoEditor: NSObject {
     }
     
     
-    func getUIImage(path: String) -> UIImage?  {
-        do{
-            //check remote url
-            if(path.contains("http")){
-                let remoteUrl = URL(string:path)
-                if let data = try? Data(contentsOf: remoteUrl!) {
-                    let remoteImage = UIImage(data: data)
-                    return remoteImage
-                } else{
-                    throw ImageLoad.failedToLoadImage("failed to load image")
+    private func getUIImage (url: String ,completion:@escaping (UIImage) -> (), reject:@escaping(String)->()){
+        let path = URL(string: url)!
+        SDWebImageManager.shared.loadImage(with: path, options: .continueInBackground, progress: { (recieved, expected, nil) in
+        }, completed: { (downloadedImage, data, error, SDImageCacheType, true, imageUrlString) in
+            DispatchQueue.main.async {
+                if(error != nil){
+                    print("error", error as Any)
+                    reject("false")
+                    return;
+                }
+                if downloadedImage != nil{
+                    completion(downloadedImage!)
                 }
             }
-            let uri = path.replacingOccurrences(of: "file://", with: "")
-            let image: UIImage? = UIImage(contentsOfFile: uri)
-            return image
-        }catch{
-            return nil
-        }
+        })
     }
     
 }

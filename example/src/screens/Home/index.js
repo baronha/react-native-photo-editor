@@ -35,7 +35,7 @@ const Home = () => {
 
       if (response.ok) {
         const list = await response.json();
-        console.log('response: ', list);
+        // console.log('response: ', list);
         if (list?.length) setData(list);
       }
     } catch (e) {

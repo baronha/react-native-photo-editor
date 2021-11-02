@@ -1,7 +1,7 @@
 import CoreGraphics
 import Foundation
 import ImageIO
-import ZLImageEditor
+//import ZLImageEditor
 
 public enum ColorCubeLoaderError: Error {
     case failedToGetDimensionFromFilename(String)

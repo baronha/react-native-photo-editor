@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import ZLImageEditor
+//import ZLImageEditor
 import SDWebImage
 
 class StickerView: UIView, ZLImageStickerContainerDelegate {
