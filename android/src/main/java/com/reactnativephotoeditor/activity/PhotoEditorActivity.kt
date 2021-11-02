@@ -17,6 +17,7 @@ import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import android.view.animation.AnticipateOvershootInterpolator
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.NonNull
@@ -194,8 +195,9 @@ open class PhotoEditorActivity : AppCompatActivity(), OnPhotoEditorListener, Vie
     val imgClose: ImageView = findViewById(R.id.imgClose)
     imgClose.setOnClickListener(this)
     //SAVE
-    val imgSave: ImageView = findViewById(R.id.imgSave)
-    imgSave.setOnClickListener(this)
+    val btnSave: TextView = findViewById(R.id.btnSave)
+    btnSave.setOnClickListener(this)
+    btnSave.setTextColor(Color.BLACK)
 
     mPhotoEditorView = findViewById(R.id.photoEditorView)
     mTxtCurrentTool = findViewById(R.id.txtCurrentTool)
@@ -245,7 +247,7 @@ open class PhotoEditorActivity : AppCompatActivity(), OnPhotoEditorListener, Vie
       R.id.imgRedo -> {
         mPhotoEditor!!.redo()
       }
-      R.id.imgSave -> {
+      R.id.btnSave -> {
         saveImage()
       }
       R.id.imgClose -> {

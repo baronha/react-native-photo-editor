@@ -90,7 +90,7 @@ class StickerFragment : BottomSheetDialogFragment() {
           .with(it)
           .load(item)
           .centerCrop()
-          .placeholder(R.drawable.ic_sticker_placeholder)
+          .placeholder(R.drawable.ic_sticker)
           .into(holder.imgSticker)
       }
     }

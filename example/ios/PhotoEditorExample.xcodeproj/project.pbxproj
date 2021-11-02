@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* PhotoEditorExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* PhotoEditorExampleTests.m */; };
 		0E9EC48626B7D3EC0054EA0F /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9EC48426B7D3EC0054EA0F /* File.swift */; };
+		0EBB30472731A3A800012D4B /* NotoSerifDisplay-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0EBB30462731A3A800012D4B /* NotoSerifDisplay-Medium.ttf */; };
 		0ED91DF927241C2B008678CD /* LUTs.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0ED91DF827241C2B008678CD /* LUTs.bundle */; };
 		0EDB89242727E43000FF4F9C /* Stickers.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0EDB89232727E43000FF4F9C /* Stickers.bundle */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
@@ -46,6 +47,7 @@
 		00E356F21AD99517003FC87E /* PhotoEditorExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoEditorExampleTests.m; sourceTree = "<group>"; };
 		0E9EC48426B7D3EC0054EA0F /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		0E9EC48526B7D3EC0054EA0F /* PhotoEditorExample-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PhotoEditorExample-Bridging-Header.h"; sourceTree = "<group>"; };
+		0EBB30462731A3A800012D4B /* NotoSerifDisplay-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NotoSerifDisplay-Medium.ttf"; path = "../src/assets/fonts/NotoSerifDisplay-Medium.ttf"; sourceTree = "<group>"; };
 		0ED91DF827241C2B008678CD /* LUTs.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = LUTs.bundle; sourceTree = "<group>"; };
 		0EDB89232727E43000FF4F9C /* Stickers.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Stickers.bundle; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* PhotoEditorExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoEditorExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -157,6 +159,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				0EBB30462731A3A800012D4B /* NotoSerifDisplay-Medium.ttf */,
 				0EDB89232727E43000FF4F9C /* Stickers.bundle */,
 				0ED91DF827241C2B008678CD /* LUTs.bundle */,
 				0E9EC48426B7D3EC0054EA0F /* File.swift */,
@@ -324,6 +327,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0EBB30472731A3A800012D4B /* NotoSerifDisplay-Medium.ttf in Resources */,
 				0EDB89242727E43000FF4F9C /* Stickers.bundle in Resources */,
 				0ED91DF927241C2B008678CD /* LUTs.bundle in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,

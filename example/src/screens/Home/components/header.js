@@ -17,7 +17,7 @@ const Header = () => {
         <RNImage style={style.avatar} source={images.david} />
       </View>
       <View style={style.info}>
-        <Text style={style.name}>David</Text>
+        <Text style={style.name}>Donqujote</Text>
         <Text style={style.userName}>@davidchimbe</Text>
         <Text numberOfLines={2} style={style.description}>
           Mọi chuyện sẽ bớt quan trọng hơn khi bạn mắc ỉa. Ok nha fen tui!
@@ -65,7 +65,7 @@ const style = StyleSheet.create({
   name: {
     fontSize: sizes.fontUpper,
     color: colors.white,
-    fontFamily: 'Avenir',
+    fontFamily: 'NotoSerifDisplay-Medium',
     fontWeight: 'bold',
   },
   userName: {
