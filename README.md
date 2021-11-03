@@ -41,9 +41,9 @@ This lib is for personal use, so if you customize your style or change something
 ## ScreenShot 👉👈
 ### iOS
 <div style="display: flex; flex-direction: row">
-  <img src="resources/tools_ios.png" width="25%">
-  <img src="resources/filters_ios.png" width="25%">
-  <img src="resources/sticker_ios.png" width="25%">
+  <img src="resources/tools_ios.png" width="30%">
+  <img src="resources/filters_ios.png" width="30%">
+  <img src="resources/sticker_ios.png" width="30%">
 </div>
 
 <br>
@@ -51,9 +51,9 @@ This lib is for personal use, so if you customize your style or change something
 ### Android
 
 <div style="display: flex; flex-direction: row">
-  <img src="resources/tools_android.png" width="25%">
-  <img src="resources/filters_android.png" width="25%">
-  <img src="resources/sticker_android.png" width="25%">
+  <img src="resources/tools_android.png" width="30%">
+  <img src="resources/filters_android.png" width="30%">
+  <img src="resources/sticker_android.png" width="30%">
 </div>
 
 ## Requirements
