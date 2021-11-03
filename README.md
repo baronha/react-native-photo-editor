@@ -68,8 +68,13 @@ yarn add @baronha/react-native-photo-editor
 ```
 
 ### iOS
-add ```use_frameworks! :linkage => :static``` in Podfile (Because this lib using SDWebImage for the purpose of loading images and stickers). 
-<br>
+
+The Swift pod `@baronha/react-native-photo-editor` depends upon `SDWebImage` and `SDWebImageWebPCoder`, which do not define modules. To opt into those targets generating module maps (which is necessary to import them from Swift when building as static libraries), you may set `use_modular_headers!` globally in your Podfile, or specify `:modular_headers => true` for particular dependencies:
+
+```
+pod 'SDWebImage', :modular_headers => true
+pod 'SDWebImageWebPCoder', :modular_headers => true
+```
 Then run ```cd ios/ && pod install```
 
 
