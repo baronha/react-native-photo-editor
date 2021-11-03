@@ -20,10 +20,12 @@ const Image = (props) => {
         path,
         stickers,
       });
+      console.log('resultEdit: ', result);
       setPath(result);
-      console.log('resultEdit', path);
     } catch (e) {
-      console.log('e', e);
+      console.log('error', e);
+    } finally {
+      console.log('finally');
     }
   };
 

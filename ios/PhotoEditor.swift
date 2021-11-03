@@ -17,7 +17,7 @@ public enum ImageLoad: Error {
 }
 
 @objc(PhotoEditor)
-class PhotoEditor: NSObject {
+class PhotoEditor: NSObject, ZLEditImageControllerDelegate {
     var window: UIWindow?
     var bridge: RCTBridge!
     
@@ -44,12 +44,16 @@ class PhotoEditor: NSObject {
         }
     }
     
+    func onCancel() {
+        self.reject("USER_CANCELLED", "User has cancelled", nil)
+    }
+    
     private func setConfiguration(options: NSDictionary, resolve:@escaping RCTPromiseResolveBlock,reject:@escaping RCTPromiseRejectBlock) -> Void{
         self.resolve = resolve;
         self.reject = reject;
         
         // Stickers
-        let stickers = options["stickers"] as! [String]
+        let stickers = options["stickers"] as? [String] ?? []
         ZLImageEditorConfiguration.default().imageStickerContainerView = StickerView(stickers: stickers)
         
         
@@ -71,7 +75,7 @@ class PhotoEditor: NSObject {
         if let controller = UIApplication.getTopViewController() {
             controller.modalTransitionStyle = .crossDissolve
             
-            ZLEditImageViewController.showEditImageVC(parentVC:controller , image: image) { [weak self] (resImage, editModel) in
+            ZLEditImageViewController.showEditImageVC(parentVC:controller , image: image, delegate: self) { [weak self] (resImage, editModel) in
                 let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
                 
                 let destinationPath = URL(fileURLWithPath: documentsPath).appendingPathComponent(String(Int64(Date().timeIntervalSince1970 * 1000)) + ".png")
@@ -88,20 +92,23 @@ class PhotoEditor: NSObject {
     
     
     private func getUIImage (url: String ,completion:@escaping (UIImage) -> (), reject:@escaping(String)->()){
-        let path = URL(string: url)!
-        SDWebImageManager.shared.loadImage(with: path, options: .continueInBackground, progress: { (recieved, expected, nil) in
-        }, completed: { (downloadedImage, data, error, SDImageCacheType, true, imageUrlString) in
-            DispatchQueue.main.async {
-                if(error != nil){
-                    print("error", error as Any)
-                    reject("false")
-                    return;
+        if let path = URL(string: url) {
+            SDWebImageManager.shared.loadImage(with: path, options: .continueInBackground, progress: { (recieved, expected, nil) in
+            }, completed: { (downloadedImage, data, error, SDImageCacheType, true, imageUrlString) in
+                DispatchQueue.main.async {
+                    if(error != nil){
+                        print("error", error as Any)
+                        reject("false")
+                        return;
+                    }
+                    if downloadedImage != nil{
+                        completion(downloadedImage!)
+                    }
                 }
-                if downloadedImage != nil{
-                    completion(downloadedImage!)
-                }
-            }
-        })
+            })
+        }else{
+            reject("false")
+        }
     }
     
 }

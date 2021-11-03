@@ -17,16 +17,16 @@ Pod::Spec.new do |s|
   s.source_files = "ios/**/*.{h,m,mm,swift}"
   
   s.dependency "React-Core"
-  s.dependency 'SDWebImage', '~> 5.11.1'
+  s.dependency "SDWebImage", "~> 5.11.1"
   s.dependency 'SDWebImageWebPCoder', '~> 0.8.4'
 
   s.subspec 'ZLImageEditor' do |zl|
     zl.name             = "ZLImageEditor"
     zl.source_files     = "ios/ZLImageEditor/Sources/*.{h,m,mm,swift}"
     zl.exclude_files    = "ios/ZLImageEditor/Sources/ZLImageEditor.h"
-    zl.resources         = 'ios/ZLImageEditor/Sources/*.{png,bundle}'
+    zl.resources        = "ios/ZLImageEditor/Sources/*.{png,bundle}"
     zl.requires_arc     = true
-    zl.frameworks       = 'UIKit', 'Accelerate'
+    zl.frameworks       = "UIKit", "Accelerate"
   end
   
 end

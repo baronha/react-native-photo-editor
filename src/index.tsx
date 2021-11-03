@@ -13,7 +13,7 @@ export type ErrorCode =
   | 'DONT_FIND_IMAGE';
 
 type PhotoEditorType = {
-  open(option: Object): Promise<String>;
+  open(option: Options): Promise<String>;
 };
 
 const { PhotoEditor } = NativeModules;
