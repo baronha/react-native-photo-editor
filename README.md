@@ -41,9 +41,9 @@ This lib is for personal use, so if you customize your style or change something
 ## ScreenShot 👉👈
 ### iOS
 <div style="display: flex; flex-direction: row">
-  <img src="resources/tools_ios.png" width="25%">
-  <img src="resources/filters_ios.png" width="25%">
-  <img src="resources/sticker_ios.png" width="25%">
+  <img src="resources/tools_ios.png" width="32%">
+  <img src="resources/filters_ios.png" width="32%">
+  <img src="resources/sticker_ios.png" width="32%">
 </div>
 
 <br>
@@ -51,9 +51,9 @@ This lib is for personal use, so if you customize your style or change something
 ### Android
 
 <div style="display: flex; flex-direction: row">
-  <img src="resources/tools_android.png" width="25%">
-  <img src="resources/filters_android.png" width="25%">
-  <img src="resources/sticker_android.png" width="25%">
+  <img src="resources/tools_android.png" width="32%">
+  <img src="resources/filters_android.png" width="32%">
+  <img src="resources/sticker_android.png" width="32%">
 </div>
 
 ## Requirements
@@ -68,8 +68,13 @@ yarn add @baronha/react-native-photo-editor
 ```
 
 ### iOS
-add ```use_frameworks! :linkage => :static``` in Podfile (Because this lib using SDWebImage for the purpose of loading images and stickers). 
-<br>
+
+The Swift pod `@baronha/react-native-photo-editor` depends upon `SDWebImage` and `SDWebImageWebPCoder`, which do not define modules. To opt into those targets generating module maps (which is necessary to import them from Swift when building as static libraries), you may set `use_modular_headers!` globally in your Podfile, or specify `:modular_headers => true` for particular dependencies:
+
+```
+pod 'SDWebImage', :modular_headers => true
+pod 'SDWebImageWebPCoder', :modular_headers => true
+```
 Then run ```cd ios/ && pod install```
 
 
