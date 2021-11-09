@@ -10,7 +10,8 @@ export type ErrorCode =
   | 'IMAGE_LOAD_FAILED'
   | 'ACTIVITY_DOES_NOT_EXIST'
   | 'FAILED_TO_SAVE_IMAGE'
-  | 'DONT_FIND_IMAGE';
+  | 'DONT_FIND_IMAGE'
+  | 'ERROR_UNKNOW';
 
 type PhotoEditorType = {
   open(option: Options): Promise<String>;
