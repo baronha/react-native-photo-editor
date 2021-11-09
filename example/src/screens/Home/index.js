@@ -32,7 +32,7 @@ const Home = () => {
   const fetchData = async () => {
     try {
       const response = await fetch(unsplashApi);
-
+      console.log('response: ', response);
       if (response.ok) {
         const list = await response.json();
         // console.log('response: ', list);
