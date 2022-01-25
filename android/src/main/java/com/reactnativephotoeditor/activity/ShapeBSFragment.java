@@ -49,7 +49,7 @@ public class ShapeBSFragment extends BottomSheetDialogFragment implements SeekBa
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         RecyclerView rvColor = view.findViewById(R.id.shapeColors);
-        SeekBar sbOpacity = view.findViewById(R.id.shapeOpacity);
+        // SeekBar sbOpacity = view.findViewById(R.id.shapeOpacity);
         SeekBar sbBrushSize = view.findViewById(R.id.shapeSize);
         RadioGroup shapeGroup = view.findViewById(R.id.shapeRadioGroup);
 
@@ -66,7 +66,7 @@ public class ShapeBSFragment extends BottomSheetDialogFragment implements SeekBa
             }
         });
 
-        sbOpacity.setOnSeekBarChangeListener(this);
+        // sbOpacity.setOnSeekBarChangeListener(this);
         sbBrushSize.setOnSeekBarChangeListener(this);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
@@ -89,11 +89,12 @@ public class ShapeBSFragment extends BottomSheetDialogFragment implements SeekBa
     @Override
     public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
       int id = seekBar.getId();
-      if (id == R.id.shapeOpacity) {
-        if (mProperties != null) {
-          mProperties.onOpacityChanged(i);
-        }
-      } else if (id == R.id.shapeSize) {
+    //   if (id == R.id.shapeOpacity) {
+    //     if (mProperties != null) {
+    //       mProperties.onOpacityChanged(i);
+    //     }
+    //   } else 
+    if (id == R.id.shapeSize) {
         if (mProperties != null) {
           mProperties.onShapeSizeChanged(i);
         }
